@@ -1,0 +1,19 @@
+<head>
+    <script src="./out/index.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="panel-top">
+        <!-- <button class="btnUpdate">update model</button> -->
+        <!-- <button class="btnAddEdge">add edge</button> -->
+        <button draggable="true" class="btnDrag"  ondragstart="dragstart(event, 'FB')">FB</button>
+        <button draggable="true" class="btnDrag"  ondragstart="dragstart(event, 'INP')">INP</button>
+        <button class="btnExport">Export</button>
+    </div>
+    <div id="sprotty-container"></div>
+    <script type="text/javascript">
+        function dragstart(ev, type) {
+            ev.dataTransfer.setData("text/plain", type );
+        }
+    </script>
+</body>

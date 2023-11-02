@@ -1,0 +1,649 @@
+/* node_modules/@eclipse-glsp/client/css/autocomplete-palette.css */
+.autocomplete-palette {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 400px;
+}
+
+/* node_modules/@eclipse-glsp/client/css/glsp-sprotty.css */
+:root {
+  --glsp-error-foreground: red;
+  --glsp-warning-foreground: yellow;
+  --glsp-info-foreground: lightblue;
+  --glsp-issue-background: rgb(255 255 255 / 85%);
+}
+.sprotty {
+  padding: 0px;
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+.sprotty svg text::selection {
+  background: none;
+}
+.sprotty-hidden {
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+.sprotty-popup {
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid;
+  max-width: 400px;
+  min-width: 100px;
+  z-index: 1;
+}
+.sprotty-popup > div {
+  margin: 10px;
+}
+.sprotty-popup-closed {
+  display: none;
+}
+.sprotty-resize-handle {
+  r: 5px;
+  fill: #1d80d1;
+  stroke: none;
+  z-index: 1000;
+}
+.sprotty-resize-handle.selected {
+  fill: #1d80d1;
+}
+.sprotty-resize-handle.active {
+  fill: #1d80d1;
+}
+.sprotty-edge {
+  fill: none;
+  stroke-width: 1.5px;
+}
+.sprotty-edge.selected {
+  stroke-width: 1.5px;
+}
+.sprotty-edge.mouseover:not(.selected) path {
+  stroke-width: 1.5px;
+}
+.sprotty-node:not(.selected) {
+  stroke-width: 0px;
+}
+.sprotty-node.mouseover:not(.selected),
+.sprotty-edge.mouseover:not(.selected) {
+  opacity: 60%;
+}
+.sprotty-node.selected,
+.sprotty-edge.selected {
+  stroke: #1d80d1;
+  stroke-width: 1.5px;
+}
+.sprotty-edge.mouseover:not(.selected) .arrow,
+.sprotty-edge.selected .arrow {
+  stroke-dashoffset: none;
+  stroke-dasharray: none;
+}
+.sprotty .node-creation-mode {
+  cursor: copy;
+}
+.sprotty .overlap-forbidden-mode {
+  cursor: not-allowed;
+}
+.sprotty .default-mode {
+  cursor: default;
+}
+.sprotty .edge-modification-not-allowed-mode {
+  cursor: no-drop;
+}
+.sprotty .edge-creation-select-source-mode {
+  cursor: pointer;
+}
+.sprotty .edge-creation-select-target-mode,
+.sprotty .edge-reconnect-select-target-mode {
+  cursor: crosshair;
+}
+.sprotty .edge-check-pending-mode {
+  cursor: wait;
+}
+.sprotty .move-mode {
+  cursor: move;
+}
+.sprotty .resize-nesw-mode {
+  cursor: nesw-resize;
+}
+.sprotty .resize-nwse-mode {
+  cursor: nwse-resize;
+}
+.sprotty .element-deletion-mode {
+  cursor: pointer;
+}
+.sprotty .marquee-mode {
+  cursor: crosshair;
+}
+.sprotty-node.marquee {
+  fill: lightgray;
+  opacity: 0.2;
+}
+.sprotty-edge > .sprotty-routing-handle {
+  r: 5px;
+  fill: #1d80d1;
+  stroke: none;
+  z-index: 1000;
+}
+.sprotty-edge > .sprotty-routing-handle[data-kind=line] {
+  opacity: 0.35;
+}
+.sprotty-edge > .sprotty-routing-handle.selected {
+  fill: #1d80d1;
+}
+.sprotty-edge > .sprotty-routing-handle.mouseover {
+  stroke: #1d80d1a1;
+  stroke-width: 1;
+}
+.sprotty-missing {
+  stroke-width: 1;
+  stroke: #f00;
+  fill: #f00;
+  font-size: 14pt;
+  text-anchor: middle;
+}
+.sprotty g .movement-not-allowed > .sprotty-node {
+  stroke: var(--glsp-error-foreground) !important;
+}
+.sprotty-resize-handle.movement-not-allowed {
+  stroke: var(--glsp-error-foreground) !important;
+  fill: var(--glsp-error-foreground) !important;
+}
+.sprotty .error > .sprotty-node {
+  filter: drop-shadow(0px 0px 2px var(--glsp-error-foreground)) !important;
+}
+.sprotty .warning > .sprotty-node {
+  filter: drop-shadow(0px 0px 2px var(--glsp-warning-foreground)) !important;
+}
+.sprotty .info > .sprotty-node {
+  filter: drop-shadow(0px 0px 2px var(--glsp-info-foreground)) !important;
+}
+.sprotty svg {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bbb;
+}
+.sprotty text {
+  stroke-width: 0;
+  stroke: #000;
+  fill: #000;
+  font-family: sans-serif;
+  font-size: 8pt;
+  text-anchor: middle;
+}
+.glsp-projection {
+  width: 40%;
+  opacity: 1;
+}
+.sprotty-projection-bar.vertical.bordered-projection-bar {
+  width: var(--theia-scrollbar-rail-width);
+}
+.sprotty-projection-bar.horizontal.bordered-projection-bar {
+  height: var(--theia-scrollbar-rail-width);
+}
+.projection-scroll-bar {
+  transition: opacity 0.8s linear;
+}
+.mouse-enter .projection-scroll-bar {
+  opacity: 0.3;
+  background: transparent;
+  background-color: #aaa;
+  z-index: 1;
+}
+.mouse-leave .projection-scroll-bar {
+  opacity: 0;
+  pointer-events: none;
+  background: transparent;
+  background-color: #aaa;
+  z-index: 1;
+}
+.bordered-projection-bar {
+  border-left: 1px solid rgba(212, 212, 212, 0.2);
+  border-top: 1px solid rgba(212, 212, 212, 0.2);
+  fill: transparent;
+  width: var(--theia-scrollbar-rail-width);
+}
+.search-hidden {
+  opacity: 0.4;
+}
+.search-highlighted .sprotty-node,
+.search-highlighted .sprotty-edge {
+  stroke-width: 1.5px;
+  stroke-width: 2px;
+  stroke-dashoffset: 5;
+  stroke-dasharray: 5, 5;
+  stroke-linecap: round;
+  stroke: rgb(218, 89, 15) !important;
+  stroke: #130bf7 !important;
+}
+
+/* node_modules/@eclipse-glsp/client/css/command-palette.css */
+.command-palette {
+  transition: opacity 0.3s linear;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.command-palette-suggestions {
+  background: white;
+  z-index: 1000;
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid rgba(60, 60, 60, 0.6);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.command-palette-suggestions .icon {
+  padding-right: 0.3em;
+  display: flex;
+  align-self: center;
+}
+.command-palette-suggestions em {
+  font-weight: bold;
+  font-style: normal;
+}
+.command-palette-suggestions > div {
+  padding: 0 4px;
+  display: flex;
+}
+.command-palette-suggestions .group {
+  background: #eee;
+}
+.command-palette-suggestions > div:hover:not(.group),
+.command-palette-suggestions > div.selected {
+  cursor: pointer;
+}
+.command-palette-suggestions > div:hover:not(.group) {
+  background: #e0e0e0;
+}
+.command-palette-suggestions > div.selected {
+  background: #bbdefb;
+}
+
+/* node_modules/@eclipse-glsp/client/css/decoration.css */
+.sprotty-issue-background {
+  fill: var(--glsp-issue-background);
+  background-color: var(--glsp-issue-background);
+}
+.sprotty-issue.sprotty-error {
+  fill: var(--glsp-error-foreground);
+  background-color: var(--glsp-error-foreground);
+}
+.sprotty-issue.sprotty-warning {
+  fill: var(--glsp-warning-foreground);
+  background-color: var(--glsp-warning-foreground);
+}
+.sprotty-issue.sprotty-info {
+  fill: var(--glsp-info-foreground);
+  background-color: var(--glsp-info-foreground);
+}
+
+/* node_modules/@eclipse-glsp/client/css/status-overlay.css */
+.sprotty-status {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+}
+.sprotty-status .fatal {
+  color: var(--glsp-error-foreground);
+}
+.sprotty-status .error {
+  color: var(--glsp-error-foreground);
+}
+.sprotty-status .warning {
+  color: var(--glsp-warning-foreground);
+}
+.sprotty-status .info {
+  color: var(--glsp-info-foreground);
+}
+.sprotty-error {
+  fill: var(--glsp-issue-background);
+  color: var(--glsp-error-foreground);
+}
+.sprotty-warning {
+  fill: var(--glsp-issue-background);
+  color: var(--glsp-warning-foreground);
+}
+.sprotty-info {
+  fill: var(--glsp-issue-background);
+  color: var();
+}
+.sprotty-infoRow .codicon {
+  margin-right: 8px;
+}
+.sprotty-status .ok {
+  visibility: hidden;
+}
+.sprotty-status-message {
+  visibility: hidden;
+  padding-left: 10px;
+}
+.sprotty-status-message.fatal {
+  visibility: visible;
+  padding-left: 10px;
+}
+.sprotty-status:hover .sprotty-status-message {
+  visibility: visible;
+}
+
+/* node_modules/@eclipse-glsp/client/css/tool-palette.css */
+.tool-palette {
+  position: absolute;
+  right: 40px;
+  top: 25px;
+  text-align: center;
+  width: 225px;
+  display: block;
+  z-index: 1000;
+  border-style: solid;
+  border-width: 0px;
+  border-color: #bbb;
+  border-radius: 5px;
+  color: black;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.palette-header {
+  padding: 0.4em;
+  text-align: left;
+  background: #cccccc;
+  border: 1px solid rgba(60, 60, 60, 0.6);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.header-icon {
+  display: flex;
+  align-items: center;
+}
+.header-icon i {
+  margin-right: 0.2em;
+}
+.header-tools {
+  display: flex;
+  align-items: center;
+}
+.header-tools i {
+  border: 1px solid #cccccc;
+  padding: 0.15em;
+  margin-right: 0.15em;
+}
+.header-tools i:hover {
+  background: #dfdfdf;
+}
+.header-tools .clicked {
+  background: #bddaef;
+  border: 1px solid rgba(60, 60, 60, 0.6);
+}
+.palette-body {
+  background: rgba(100, 100, 100, 0.2);
+  border: 1px solid rgba(60, 60, 60, 0.6);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.tool-group {
+  text-align: left;
+  background: #ededee;
+}
+.group-header {
+  background: #cccccc;
+  display: flex;
+  align-items: center;
+}
+.group-header:hover {
+  background: #aaaaaa;
+}
+.group-header i {
+  padding: 0.4em;
+}
+.tool-button {
+  background: #ededee;
+  padding: 0.4em;
+  display: flex;
+  align-items: center;
+}
+.tool-button i {
+  margin-right: 0.4em;
+}
+.tool-button:hover {
+  background: #dfdfdf;
+}
+.tool-button.clicked {
+  background: #bddaef;
+}
+.tool-button.collapsed {
+  display: none;
+}
+.collapsible-palette {
+  overflow: auto;
+  transition: max-height 0.2s ease-out;
+}
+.minimize-palette-button {
+  position: absolute;
+  right: 20px;
+  top: 35px;
+  z-index: 1000;
+}
+.search-input {
+  background: #dfdfdf;
+  color: black;
+  border: #bddaef;
+  padding-left: 3px;
+  width: 100%;
+  margin: 3px;
+}
+
+/* node_modules/@eclipse-glsp/client/css/key-shortcut.css */
+.keyboard-shortcuts-menu {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ededee;
+  margin-bottom: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.5;
+  font-size: 16px;
+  z-index: 9999;
+  width: 400px;
+  max-height: 512px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.keyboard-shortcuts-menu h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.keyboard-shortcuts-menu kbd {
+  background-color: #e4e1e1;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  color: #333;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1;
+  padding: 2px 4px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+.keyboard-shortcuts-menu kbd:active {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+}
+.keyboard-shortcuts-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  padding: 10px;
+  padding-top: 3px;
+  overflow: auto;
+  right: 40px;
+  top: 25px;
+  text-align: left;
+  display: block;
+  z-index: 1000;
+  color: black;
+}
+.shortcut-entry-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+#key-shortcut-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #cccccc;
+  border: none;
+  cursor: pointer;
+}
+.column-title {
+  text-align: left;
+}
+.menu-header {
+  padding: 0.4em;
+  text-align: left;
+  background: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.shortcut-table thead th {
+  border-bottom: 2px solid #000;
+}
+
+/* node_modules/@eclipse-glsp/client/css/keyboard-tool-palette.css */
+.accessibility-tool-palette.tool-palette {
+  top: 48px;
+  width: 240px;
+}
+.accessibility-tool-palette .header-tools i {
+  margin-right: 0.5em;
+  position: relative;
+}
+.accessibility-tool-palette .tool-button .key-shortcut,
+.accessibility-tool-palette .header-tools .key-shortcut {
+  display: none;
+  position: absolute;
+  border-radius: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0.5rem;
+  background: #fff;
+  border: 2px solid #666;
+  color: black;
+  text-align: center;
+  font: bold 0.8rem Arial, sans-serif;
+  line-height: 0.5rem;
+}
+.accessibility-tool-palette .tool-button .key-shortcut {
+  left: -2rem;
+}
+.accessibility-tool-palette .header-tools .key-shortcut {
+  top: -2.5rem;
+  right: -0.3rem;
+}
+.accessibility-show-shortcuts:focus-within .header-tools .key-shortcut,
+.accessibility-show-shortcuts:focus-within .tool-button .key-shortcut {
+  display: block;
+}
+.accessibility-tool-palette.collapsible-palette {
+  overflow: visible;
+}
+.accessibility-tool-palette.collapsible-palette + .minimize-palette-button {
+  top: 50px;
+}
+
+/* node_modules/@eclipse-glsp/client/css/keyboard.css */
+.grid-container {
+  display: grid;
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  grid-template-columns: auto auto auto;
+}
+.grid-container:focus {
+  opacity: 1 !important;
+}
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  margin: 0 -1px -1px 0;
+}
+.grid-item-number {
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.5rem;
+  background: #fff;
+  border: 2px solid #666;
+  color: black;
+  text-align: center;
+  font: bold 1.3rem Arial, sans-serif;
+}
+
+/* node_modules/@eclipse-glsp/client/css/navigation.css */
+:root {
+  --glsp-navigation-highlight: rgba(136, 68, 68, 0.2);
+}
+.navigable-element {
+  stroke: var(--glsp-navigation-highlight) !important;
+}
+.navigable-element .sprotty-edge.arrow {
+  fill: var(--glsp-navigation-highlight) !important;
+  stroke: var(--glsp-navigation-highlight) !important;
+}
+
+/* node_modules/@eclipse-glsp/client/css/toast.css */
+.toast {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1rem;
+  margin: 0 1rem;
+}
+.toast-column-left {
+  grid-column: 1 / span 1;
+}
+.toast-column-center {
+  grid-column: 2 / span 1;
+}
+.toast-column-right {
+  grid-column: 3 / span 1;
+}
+.toast-container {
+  display: inline-block;
+  min-width: 256px;
+  max-width: 516px;
+  background-color: #ccc;
+  color: #000;
+  padding: 0.5rem;
+}
+/*# sourceMappingURL=index.css.map */

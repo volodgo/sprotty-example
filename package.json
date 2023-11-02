@@ -1,0 +1,23 @@
+{
+  "name": "sprotty_learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild ./index.ts --bundle --sourcemap --outfile=./out/index.js",
+    "build_watch": "esbuild ./index.ts --bundle --sourcemap --outfile=./out/index.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.8",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@eclipse-glsp/client": "^2.0.0",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13",
+    "sprotty": "^1.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

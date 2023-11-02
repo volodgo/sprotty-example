@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    // "reactNamespace": "JSX",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "types": [
+        "reflect-metadata"
+    ]
+  },
+  "lib": [
+      "ES2019",
+      "DOM"
+  ],
+  // "include": [
+  //   "features/**/*.tsx"
+  // ],
+  "exclude": [
+    "**/*.spec.ts", "**/*.spec.tsx"
+  ]
+}
