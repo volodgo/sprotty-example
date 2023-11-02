@@ -4,11 +4,7 @@ import {
   SCompartment,
   SLabel,
   SPort,
-  CollapseExpandAction,
-  CollapseExpandAllAction,
   Action,
-  SModelIndex,
-  SModelElement,
 } from "sprotty-protocol";
 import {
   ActionHandlerRegistry,
@@ -23,8 +19,6 @@ import {
 
 @injectable()
 export class ClassDiagramModelSource extends LocalModelSource {
-  expansionState: { [key: string]: boolean };
-
   constructor() {
     super();
     this.currentRoot = this.initializeModel();
@@ -122,93 +116,6 @@ export class ClassDiagramModelSource extends LocalModelSource {
         ]);
         this.updateModel();
       }
-    }
-  }
-
-  protected handleCollapseExpandAction(action: CollapseExpandAction): void {
-    //
-    // let filtered = this.currentRoot.children.filter((child) =>
-    //   action.expandIds.includes(child.id)
-    // ) as (SModelElement & Expandable)[];
-    // filtered.forEach((child) => (child.expanded = !child.expanded));
-    // this.updateModel();
-    // (element as any).expanded = expanded;
-
-    action.expandIds.forEach((id) => (this.expansionState[id] = true));
-    action.collapseIds.forEach((id) => (this.expansionState[id] = false));
-    this.applyExpansionState();
-    this.updateModel();
-    /* setTimeout(() => {
-      this.updateModel();
-    }, 1000); */
-
-    // this.doSubmitModel(this.currentRoot, true, CommitModelAction.create());
-    // this.doSubmitModel(this.currentRoot, false);
-    // this.commitModel(this.currentRoot);
-  }
-
-  protected handleCollapseExpandAllAction(
-    action: CollapseExpandAllAction
-  ): void {
-    // tslint:disable-next-line:forin
-    for (const id in this.expansionState)
-      this.expansionState[id] === action.expand;
-    this.applyExpansionState();
-    this.updateModel();
-    // this.doSubmitModel(this.currentRoot, true, CommitModelAction.create());
-  }
-
-  protected applyExpansionState() {
-    const index = new SModelIndex();
-    index.add(this.currentRoot);
-    // tslint:disable-next-line:forin
-    for (const id in this.expansionState) {
-      const element = index.getById(id);
-      if (element && element.children) {
-        const expanded = this.expansionState[id];
-        (element as any).expanded = expanded;
-        // element.children = element.children.filter(
-        //   (child) => child.type !== "comp:comp"
-        // );
-        // if (expanded) this.addExpandedChildren(element);
-      }
-    }
-  }
-
-  protected addExpandedChildren(element: SModelElement) {
-    if (!element.children) return;
-    switch (element.id) {
-      case "node0":
-        // element.children.push(<SCompartment>{
-        //   id: "node0_attrs",
-        //   type: "comp:comp",
-        //   layout: "vbox",
-        //   children: [
-        //     <SLabel>{
-        //       id: "node0_op2",
-        //       type: "label:text",
-        //       text: "name: string",
-        //     },
-        //   ],
-        // });
-        element.children.push(<SModelElement>{
-          id: "node0_ops",
-          type: "comp:comp",
-          layout: "vbox",
-          children: [
-            <SLabel>{
-              id: "node0_op0",
-              type: "label:text",
-              text: "+ foo(): integer",
-            },
-            {
-              id: "node0_op1",
-              type: "label:text",
-              text: "# bar(x: string): void",
-            },
-          ],
-        });
-        break;
     }
   }
 
@@ -322,38 +229,6 @@ export class ClassDiagramModelSource extends LocalModelSource {
           ],
         },
       ],
-    };
-
-    let task1 = <SNode>{
-      id: "task1",
-      type: "task",
-      position: {
-        x: 500,
-        y: 500,
-      },
-      // size: { width: 100, height: 100 },
-      // layout: "stack",
-      children: [
-        <SLabel>{
-          id: "task1_title",
-          text: "Task #1",
-          type: "task:title",
-          // position: { x: 20, y: 0 },
-        },
-        // <SLabel>{
-        //   id: "task2_title",
-        //   text: "Task #2",
-        //   type: "task:title",
-        //   // position: { x: 20, y: 0 },
-        // },
-      ],
-    };
-
-    this.expansionState = {
-      node0: false,
-      package0: false,
-      // node1: false,
-      // node2: false,
     };
 
     const graph: SGraph = {

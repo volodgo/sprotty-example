@@ -1,30 +1,6 @@
-import {
-  Action,
-  CreateNodeOperation,
-  GChildElement,
-  MouseListener,
-  Point,
-  TYPES,
-  UpdateModelAction,
-} from "@eclipse-glsp/client";
-import { SPort, SLabel } from "sprotty-protocol";
-import {
-  ActionDispatcher,
-  Command,
-  CommandExecutionContext,
-  IActionDispatcher,
-  IActionDispatcherProvider,
-  LocalModelSource,
-  SModelElementImpl,
-  SModelRootImpl,
-  SParentElementImpl,
-  SShapeElementImpl,
-  createRandomId,
-  findParent,
-  findParentByFeature,
-  isConnectable,
-} from "sprotty";
-import { inject, injectable, optional } from "inversify";
+import { Action, MouseListener, Point } from "@eclipse-glsp/client";
+import { SModelElementImpl, findParent } from "sprotty";
+import { injectable } from "inversify";
 import { Node4diac } from "../../models";
 
 // export const NodeCreator = Symbol("NodeCreator");
@@ -89,50 +65,5 @@ export namespace CreatingFbAction {
       kind: KIND,
       point,
     };
-  }
-}
-
-// обработку перенес в model-source
-@injectable()
-export class CreateInpCommand extends Command {
-  static readonly KIND = CreatingInpAction.KIND;
-  private id: string;
-
-  constructor(@inject(TYPES.Action) public action: CreatingInpAction) {
-    super();
-  }
-
-  execute(context: CommandExecutionContext): SModelRootImpl {
-    this.id = createRandomId();
-    let model = context.root;
-    let element = model.index.getById(this.action.parentId);
-    if (element instanceof SParentElementImpl) {
-      let inputs = element.children.find(
-        (item) => item.type == "node4diac:inputs"
-      );
-      if (inputs) {
-        let port = context.modelFactory.createElement(<SPort>{
-          type: "node4diac:port",
-          id: this.id,
-          children: [
-            <SLabel>{
-              id: `${this.id}_title`,
-              text: "INP",
-              type: "node4diac:port_title",
-            },
-          ],
-        });
-        inputs.add(port);
-      }
-    }
-    return context.root;
-  }
-
-  undo(context: CommandExecutionContext): SModelRootImpl {
-    return context.root;
-  }
-
-  redo(context: CommandExecutionContext): SModelRootImpl {
-    return context.root;
   }
 }

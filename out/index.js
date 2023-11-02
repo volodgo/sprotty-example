@@ -892,8 +892,8 @@
         }
         return targets;
       }
-      function _getServiceIdentifierForProperty(inject5, multiInject, propertyName, className) {
-        var serviceIdentifier = inject5 || multiInject;
+      function _getServiceIdentifierForProperty(inject3, multiInject, propertyName, className) {
+        var serviceIdentifier = inject3 || multiInject;
         if (serviceIdentifier === void 0) {
           var msg = ERROR_MSGS.MISSING_INJECTABLE_ANNOTATION + " for property " + String(propertyName) + " in class " + className + ".";
           throw new Error(msg);
@@ -3877,7 +3877,7 @@
       exports.injectable = void 0;
       var ERRORS_MSGS = __importStar(require_error_msgs());
       var METADATA_KEY = __importStar(require_metadata_keys());
-      function injectable8() {
+      function injectable7() {
         return function(target) {
           if (Reflect.hasOwnMetadata(METADATA_KEY.PARAM_TYPES, target)) {
             throw new Error(ERRORS_MSGS.DUPLICATED_INJECTABLE_DECORATOR);
@@ -3887,7 +3887,7 @@
           return target;
         };
       }
-      exports.injectable = injectable8;
+      exports.injectable = injectable7;
     }
   });
 
@@ -4010,8 +4010,8 @@
       exports.inject = void 0;
       var METADATA_KEY = __importStar(require_metadata_keys());
       var inject_base_1 = require_inject_base();
-      var inject5 = (0, inject_base_1.injectBase)(METADATA_KEY.INJECT_TAG);
-      exports.inject = inject5;
+      var inject3 = (0, inject_base_1.injectBase)(METADATA_KEY.INJECT_TAG);
+      exports.inject = inject3;
     }
   });
 
@@ -4052,10 +4052,10 @@
       var METADATA_KEY = __importStar(require_metadata_keys());
       var metadata_1 = require_metadata();
       var decorator_utils_1 = require_decorator_utils();
-      function optional3() {
+      function optional2() {
         return (0, decorator_utils_1.createTaggedDecorator)(new metadata_1.Metadata(METADATA_KEY.OPTIONAL_TAG, true));
       }
-      exports.optional = optional3;
+      exports.optional = optional2;
     }
   });
 
@@ -4579,28 +4579,28 @@
         }
         SetModelAction2.create = create;
       })(SetModelAction || (exports.SetModelAction = SetModelAction = {}));
-      var UpdateModelAction2;
-      (function(UpdateModelAction3) {
-        UpdateModelAction3.KIND = "updateModel";
+      var UpdateModelAction;
+      (function(UpdateModelAction2) {
+        UpdateModelAction2.KIND = "updateModel";
         function create(input, options = {}) {
           if (Array.isArray(input)) {
             return {
-              kind: UpdateModelAction3.KIND,
+              kind: UpdateModelAction2.KIND,
               matches: input,
               animate: options.animate,
               cause: options.cause
             };
           } else {
             return {
-              kind: UpdateModelAction3.KIND,
+              kind: UpdateModelAction2.KIND,
               newRoot: input,
               animate: options.animate,
               cause: options.cause
             };
           }
         }
-        UpdateModelAction3.create = create;
-      })(UpdateModelAction2 || (exports.UpdateModelAction = UpdateModelAction2 = {}));
+        UpdateModelAction2.create = create;
+      })(UpdateModelAction || (exports.UpdateModelAction = UpdateModelAction = {}));
       var RequestPopupModelAction;
       (function(RequestPopupModelAction2) {
         RequestPopupModelAction2.KIND = "requestPopupModel";
@@ -4720,31 +4720,31 @@
         }
         SelectionResult2.create = create;
       })(SelectionResult || (exports.SelectionResult = SelectionResult = {}));
-      var CollapseExpandAction2;
-      (function(CollapseExpandAction3) {
-        CollapseExpandAction3.KIND = "collapseExpand";
+      var CollapseExpandAction;
+      (function(CollapseExpandAction2) {
+        CollapseExpandAction2.KIND = "collapseExpand";
         function create(options) {
           var _a, _b;
           return {
-            kind: CollapseExpandAction3.KIND,
+            kind: CollapseExpandAction2.KIND,
             expandIds: (_a = options.expandIds) !== null && _a !== void 0 ? _a : [],
             collapseIds: (_b = options.collapseIds) !== null && _b !== void 0 ? _b : []
           };
         }
-        CollapseExpandAction3.create = create;
-      })(CollapseExpandAction2 || (exports.CollapseExpandAction = CollapseExpandAction2 = {}));
-      var CollapseExpandAllAction2;
-      (function(CollapseExpandAllAction3) {
-        CollapseExpandAllAction3.KIND = "collapseExpandAll";
+        CollapseExpandAction2.create = create;
+      })(CollapseExpandAction || (exports.CollapseExpandAction = CollapseExpandAction = {}));
+      var CollapseExpandAllAction;
+      (function(CollapseExpandAllAction2) {
+        CollapseExpandAllAction2.KIND = "collapseExpandAll";
         function create(options = {}) {
           var _a;
           return {
-            kind: CollapseExpandAllAction3.KIND,
+            kind: CollapseExpandAllAction2.KIND,
             expand: (_a = options.expand) !== null && _a !== void 0 ? _a : true
           };
         }
-        CollapseExpandAllAction3.create = create;
-      })(CollapseExpandAllAction2 || (exports.CollapseExpandAllAction = CollapseExpandAllAction2 = {}));
+        CollapseExpandAllAction2.create = create;
+      })(CollapseExpandAllAction || (exports.CollapseExpandAllAction = CollapseExpandAllAction = {}));
       var OpenAction;
       (function(OpenAction2) {
         OpenAction2.KIND = "open";
@@ -5499,7 +5499,7 @@
         get root() {
           let current = this;
           while (current) {
-            if (current instanceof SModelRootImpl3)
+            if (current instanceof SModelRootImpl2)
               return current;
             else if (current instanceof SChildElementImpl)
               current = current.parent;
@@ -5525,7 +5525,7 @@
         return children !== void 0 && children.constructor === Array;
       }
       exports.isParent = isParent;
-      var SParentElementImpl2 = class extends SModelElementImpl3 {
+      var SParentElementImpl = class extends SModelElementImpl3 {
         constructor() {
           super(...arguments);
           this.children = [];
@@ -5602,11 +5602,11 @@
           return (0, geometry_1.isBounds)(point) ? point : { x: point.x, y: point.y, width: -1, height: -1 };
         }
       };
-      exports.SParentElementImpl = SParentElementImpl2;
-      var SChildElementImpl = class extends SParentElementImpl2 {
+      exports.SParentElementImpl = SParentElementImpl;
+      var SChildElementImpl = class extends SParentElementImpl {
       };
       exports.SChildElementImpl = SChildElementImpl;
-      var SModelRootImpl3 = class extends SParentElementImpl2 {
+      var SModelRootImpl2 = class extends SParentElementImpl {
         constructor(index = new ModelIndexImpl()) {
           super();
           this.canvasBounds = geometry_1.Bounds.EMPTY;
@@ -5616,16 +5616,16 @@
           });
         }
       };
-      exports.SModelRootImpl = SModelRootImpl3;
+      exports.SModelRootImpl = SModelRootImpl2;
       var ID_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
-      function createRandomId4(length = 8) {
+      function createRandomId3(length = 8) {
         let id = "";
         for (let i = 0; i < length; i++) {
           id += ID_CHARS.charAt(Math.floor(Math.random() * ID_CHARS.length));
         }
         return id;
       }
-      exports.createRandomId = createRandomId4;
+      exports.createRandomId = createRandomId3;
       var ModelIndexImpl = class {
         constructor() {
           this.id2element = /* @__PURE__ */ new Map();
@@ -5633,13 +5633,13 @@
         add(element) {
           if (!element.id) {
             do {
-              element.id = createRandomId4();
+              element.id = createRandomId3();
             } while (this.contains(element));
           } else if (this.contains(element)) {
             throw new Error("Duplicate ID in model: " + element.id);
           }
           this.id2element.set(element.id, element);
-          if (element instanceof SParentElementImpl2) {
+          if (element instanceof SParentElementImpl) {
             for (const child of element.children) {
               this.add(child);
             }
@@ -5647,7 +5647,7 @@
         }
         remove(element) {
           this.id2element.delete(element.id);
-          if (element instanceof SParentElementImpl2) {
+          if (element instanceof SParentElementImpl) {
             for (const child of element.children) {
               this.remove(child);
             }
@@ -5933,7 +5933,7 @@
       var smodel_factory_1 = require_smodel_factory();
       var animation_frame_syncer_1 = require_animation_frame_syncer();
       (0, actions_1.setRequestContext)("client");
-      var ActionDispatcher2 = class ActionDispatcher {
+      var ActionDispatcher = class ActionDispatcher {
         constructor() {
           this.postponedActions = [];
           this.requests = /* @__PURE__ */ new Map();
@@ -6055,30 +6055,30 @@
           }
         }
       };
-      exports.ActionDispatcher = ActionDispatcher2;
+      exports.ActionDispatcher = ActionDispatcher;
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ActionHandlerRegistryProvider),
         __metadata("design:type", Function)
-      ], ActionDispatcher2.prototype, "actionHandlerRegistryProvider", void 0);
+      ], ActionDispatcher.prototype, "actionHandlerRegistryProvider", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ICommandStack),
         __metadata("design:type", Object)
-      ], ActionDispatcher2.prototype, "commandStack", void 0);
+      ], ActionDispatcher.prototype, "commandStack", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ILogger),
         __metadata("design:type", Object)
-      ], ActionDispatcher2.prototype, "logger", void 0);
+      ], ActionDispatcher.prototype, "logger", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.AnimationFrameSyncer),
         __metadata("design:type", animation_frame_syncer_1.AnimationFrameSyncer)
-      ], ActionDispatcher2.prototype, "syncer", void 0);
+      ], ActionDispatcher.prototype, "syncer", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IDiagramLocker),
         __metadata("design:type", Object)
-      ], ActionDispatcher2.prototype, "diagramLocker", void 0);
-      exports.ActionDispatcher = ActionDispatcher2 = __decorate([
+      ], ActionDispatcher.prototype, "diagramLocker", void 0);
+      exports.ActionDispatcher = ActionDispatcher = __decorate([
         (0, inversify_1.injectable)()
-      ], ActionDispatcher2);
+      ], ActionDispatcher);
     }
   });
 
@@ -6298,13 +6298,13 @@
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.ResetCommand = exports.SystemCommand = exports.PopupCommand = exports.HiddenCommand = exports.MergeableCommand = exports.Command = void 0;
       var inversify_1 = require_inversify();
-      var Command3 = class Command {
+      var Command2 = class Command {
       };
-      exports.Command = Command3;
-      exports.Command = Command3 = __decorate([
+      exports.Command = Command2;
+      exports.Command = Command2 = __decorate([
         (0, inversify_1.injectable)()
-      ], Command3);
-      var MergeableCommand = class MergeableCommand extends Command3 {
+      ], Command2);
+      var MergeableCommand = class MergeableCommand extends Command2 {
         /**
          * Tries to merge the given command with this.
          *
@@ -6319,7 +6319,7 @@
       exports.MergeableCommand = MergeableCommand = __decorate([
         (0, inversify_1.injectable)()
       ], MergeableCommand);
-      var HiddenCommand = class HiddenCommand extends Command3 {
+      var HiddenCommand = class HiddenCommand extends Command2 {
         undo(context) {
           context.logger.error(this, "Cannot undo a hidden command");
           return context.root;
@@ -6333,19 +6333,19 @@
       exports.HiddenCommand = HiddenCommand = __decorate([
         (0, inversify_1.injectable)()
       ], HiddenCommand);
-      var PopupCommand = class PopupCommand extends Command3 {
+      var PopupCommand = class PopupCommand extends Command2 {
       };
       exports.PopupCommand = PopupCommand;
       exports.PopupCommand = PopupCommand = __decorate([
         (0, inversify_1.injectable)()
       ], PopupCommand);
-      var SystemCommand = class SystemCommand extends Command3 {
+      var SystemCommand = class SystemCommand extends Command2 {
       };
       exports.SystemCommand = SystemCommand;
       exports.SystemCommand = SystemCommand = __decorate([
         (0, inversify_1.injectable)()
       ], SystemCommand);
-      var ResetCommand = class ResetCommand extends Command3 {
+      var ResetCommand = class ResetCommand extends Command2 {
       };
       exports.ResetCommand = ResetCommand;
       exports.ResetCommand = ResetCommand = __decorate([
@@ -6798,7 +6798,7 @@
       }
       exports.cloneModel = cloneModel;
       function applyBounds(root, action) {
-        const index = new SModelIndex2();
+        const index = new SModelIndex();
         index.add(root);
         for (const b of action.bounds) {
           const element = index.getById(b.elementId);
@@ -6852,7 +6852,7 @@
         return void 0;
       }
       exports.findElement = findElement;
-      var SModelIndex2 = class {
+      var SModelIndex = class {
         constructor() {
           this.id2element = /* @__PURE__ */ new Map();
           this.id2parent = /* @__PURE__ */ new Map();
@@ -6901,7 +6901,7 @@
           throw new Error("Element has no root");
         }
       };
-      exports.SModelIndex = SModelIndex2;
+      exports.SModelIndex = SModelIndex;
     }
   });
 
@@ -7202,13 +7202,13 @@
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.isSVGGraphicsElement = exports.hitsMouseEvent = exports.getWindowScroll = exports.isCrossSite = exports.isMac = exports.isCtrlOrCmd = void 0;
       var sprotty_protocol_1 = require_lib();
-      function isCtrlOrCmd2(event) {
+      function isCtrlOrCmd(event) {
         if (isMac())
           return event.metaKey;
         else
           return event.ctrlKey;
       }
-      exports.isCtrlOrCmd = isCtrlOrCmd2;
+      exports.isCtrlOrCmd = isCtrlOrCmd;
       function isMac() {
         return window.navigator.userAgent.indexOf("Mac") !== -1;
       }
@@ -7443,7 +7443,7 @@
         return current;
       }
       exports.findParent = findParent2;
-      function findParentByFeature4(element, predicate) {
+      function findParentByFeature3(element, predicate) {
         let current = element;
         while (current !== void 0) {
           if (predicate(current))
@@ -7455,7 +7455,7 @@
         }
         return current;
       }
-      exports.findParentByFeature = findParentByFeature4;
+      exports.findParentByFeature = findParentByFeature3;
       function translatePoint(point, source, target) {
         if (source !== target) {
           while (source instanceof smodel_1.SChildElementImpl) {
@@ -8082,7 +8082,7 @@
         __param(0, (0, inversify_1.optional)()),
         __metadata("design:paramtypes", [Array])
       ], PopupMouseTool);
-      var MouseListener3 = class MouseListener {
+      var MouseListener2 = class MouseListener {
         mouseOver(target, event) {
           return [];
         }
@@ -8123,11 +8123,11 @@
           return vnode;
         }
       };
-      exports.MouseListener = MouseListener3;
-      exports.MouseListener = MouseListener3 = __decorate([
+      exports.MouseListener = MouseListener2;
+      exports.MouseListener = MouseListener2 = __decorate([
         (0, inversify_1.injectable)()
-      ], MouseListener3);
-      var MousePositionTracker = class MousePositionTracker extends MouseListener3 {
+      ], MouseListener2);
+      var MousePositionTracker = class MousePositionTracker extends MouseListener2 {
         mouseMove(target, event) {
           this.lastPosition = target.root.parentToLocal({ x: event.offsetX, y: event.offsetY });
           return [];
@@ -10250,7 +10250,7 @@
           }
         });
       }
-      var SShapeElementImpl3 = class extends smodel_1.SChildElementImpl {
+      var SShapeElementImpl = class extends smodel_1.SChildElementImpl {
         constructor() {
           super(...arguments);
           this.position = geometry_1.Point.ORIGIN;
@@ -10301,7 +10301,7 @@
           return result;
         }
       };
-      exports.SShapeElementImpl = SShapeElementImpl3;
+      exports.SShapeElementImpl = SShapeElementImpl;
     }
   });
 
@@ -11198,14 +11198,14 @@
       exports.SButtonImpl = void 0;
       var model_1 = require_model2();
       var model_2 = require_model3();
-      var SButtonImpl2 = class extends model_1.SShapeElementImpl {
+      var SButtonImpl = class extends model_1.SShapeElementImpl {
         constructor() {
           super(...arguments);
           this.enabled = true;
         }
       };
-      exports.SButtonImpl = SButtonImpl2;
-      SButtonImpl2.DEFAULT_FEATURES = [model_1.boundsFeature, model_1.layoutableChildFeature, model_2.fadeFeature];
+      exports.SButtonImpl = SButtonImpl;
+      SButtonImpl.DEFAULT_FEATURES = [model_1.boundsFeature, model_1.layoutableChildFeature, model_2.fadeFeature];
     }
   });
 
@@ -11504,12 +11504,12 @@
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.isSelected = exports.isSelectable = exports.selectFeature = void 0;
       exports.selectFeature = Symbol("selectFeature");
-      function isSelectable2(element) {
+      function isSelectable(element) {
         return element.hasFeature(exports.selectFeature);
       }
-      exports.isSelectable = isSelectable2;
+      exports.isSelectable = isSelectable;
       function isSelected(element) {
-        return element !== void 0 && isSelectable2(element) && element.selected;
+        return element !== void 0 && isSelectable(element) && element.selected;
       }
       exports.isSelected = isSelected;
     }
@@ -12505,7 +12505,7 @@
       var model_2 = require_model6();
       var model_3 = require_model7();
       var model_4 = require_model8();
-      var SRoutableElementImpl3 = class extends smodel_1.SChildElementImpl {
+      var SRoutableElementImpl = class extends smodel_1.SChildElementImpl {
         constructor() {
           super(...arguments);
           this.routingPoints = [];
@@ -12525,12 +12525,12 @@
           }), geometry_1.Bounds.EMPTY);
         }
       };
-      exports.SRoutableElementImpl = SRoutableElementImpl3;
+      exports.SRoutableElementImpl = SRoutableElementImpl;
       exports.connectableFeature = Symbol("connectableFeature");
-      function isConnectable4(element) {
+      function isConnectable3(element) {
         return element.hasFeature(exports.connectableFeature) && element.canConnect;
       }
-      exports.isConnectable = isConnectable4;
+      exports.isConnectable = isConnectable3;
       function getAbsoluteRouteBounds(model, route = model.routingPoints) {
         let bounds = getRouteBounds(route);
         let current = model;
@@ -12579,7 +12579,7 @@
          * be an `SGraphIndex` for efficient lookup.
          */
         get incomingEdges() {
-          const allEdges = this.index.all().filter((e) => e instanceof SRoutableElementImpl3);
+          const allEdges = this.index.all().filter((e) => e instanceof SRoutableElementImpl);
           return allEdges.filter((e) => e.targetId === this.id);
         }
         /**
@@ -12587,7 +12587,7 @@
          * be an `SGraphIndex` for efficient lookup.
          */
         get outgoingEdges() {
-          const allEdges = this.index.all().filter((e) => e instanceof SRoutableElementImpl3);
+          const allEdges = this.index.all().filter((e) => e instanceof SRoutableElementImpl);
           return allEdges.filter((e) => e.sourceId === this.id);
         }
         canConnect(routable, role) {
@@ -12595,7 +12595,7 @@
         }
       };
       exports.SConnectableElementImpl = SConnectableElementImpl;
-      var SRoutingHandleImpl3 = class extends smodel_1.SChildElementImpl {
+      var SRoutingHandleImpl2 = class extends smodel_1.SChildElementImpl {
         constructor() {
           super(...arguments);
           this.editMode = false;
@@ -12607,11 +12607,11 @@
          * default features
          */
         hasFeature(feature) {
-          return SRoutingHandleImpl3.DEFAULT_FEATURES.indexOf(feature) !== -1;
+          return SRoutingHandleImpl2.DEFAULT_FEATURES.indexOf(feature) !== -1;
         }
       };
-      exports.SRoutingHandleImpl = SRoutingHandleImpl3;
-      SRoutingHandleImpl3.DEFAULT_FEATURES = [model_2.selectFeature, model_4.moveFeature, model_3.hoverFeedbackFeature];
+      exports.SRoutingHandleImpl = SRoutingHandleImpl2;
+      SRoutingHandleImpl2.DEFAULT_FEATURES = [model_2.selectFeature, model_4.moveFeature, model_3.hoverFeedbackFeature];
       var SDanglingAnchorImpl = class extends SConnectableElementImpl {
         constructor() {
           super();
@@ -12668,10 +12668,10 @@
       }
       exports.canEditRouting = canEditRouting;
       exports.editLabelFeature = Symbol("editLabelFeature");
-      function isEditableLabel2(element) {
+      function isEditableLabel(element) {
         return "text" in element && element.hasFeature(exports.editLabelFeature);
       }
-      exports.isEditableLabel = isEditableLabel2;
+      exports.isEditableLabel = isEditableLabel;
       exports.withEditLabelFeature = Symbol("withEditLabelFeature");
       function isWithEditableLabel(element) {
         return "editableLabel" in element && element.hasFeature(exports.withEditLabelFeature);
@@ -13037,7 +13037,7 @@
         }
       };
       exports.SGraphImpl = SGraphImpl2;
-      var SNodeImpl3 = class extends model_7.SConnectableElementImpl {
+      var SNodeImpl2 = class extends model_7.SConnectableElementImpl {
         constructor() {
           super(...arguments);
           this.selected = false;
@@ -13064,8 +13064,8 @@
           return allEdges.filter((e) => e.sourceId === this.id);
         }
       };
-      exports.SNodeImpl = SNodeImpl3;
-      SNodeImpl3.DEFAULT_FEATURES = [
+      exports.SNodeImpl = SNodeImpl2;
+      SNodeImpl2.DEFAULT_FEATURES = [
         model_7.connectableFeature,
         delete_1.deletableFeature,
         model_8.selectFeature,
@@ -15160,19 +15160,19 @@
       var model_1 = require_model9();
       var routing_1 = require_routing();
       var model_2 = require_model11();
-      var SwitchEditModeAction2;
-      (function(SwitchEditModeAction3) {
-        SwitchEditModeAction3.KIND = "switchEditMode";
+      var SwitchEditModeAction;
+      (function(SwitchEditModeAction2) {
+        SwitchEditModeAction2.KIND = "switchEditMode";
         function create(options) {
           var _a, _b;
           return {
-            kind: SwitchEditModeAction3.KIND,
+            kind: SwitchEditModeAction2.KIND,
             elementsToActivate: (_a = options.elementsToActivate) !== null && _a !== void 0 ? _a : [],
             elementsToDeactivate: (_b = options.elementsToDeactivate) !== null && _b !== void 0 ? _b : []
           };
         }
-        SwitchEditModeAction3.create = create;
-      })(SwitchEditModeAction2 || (exports.SwitchEditModeAction = SwitchEditModeAction2 = {}));
+        SwitchEditModeAction2.create = create;
+      })(SwitchEditModeAction || (exports.SwitchEditModeAction = SwitchEditModeAction = {}));
       var SwitchEditModeCommand = class SwitchEditModeCommand extends command_1.Command {
         constructor(action) {
           super();
@@ -15265,7 +15265,7 @@
         }
       };
       exports.SwitchEditModeCommand = SwitchEditModeCommand;
-      SwitchEditModeCommand.KIND = SwitchEditModeAction2.KIND;
+      SwitchEditModeCommand.KIND = SwitchEditModeAction.KIND;
       __decorate([
         (0, inversify_1.inject)(routing_1.EdgeRouterRegistry),
         __metadata("design:type", routing_1.EdgeRouterRegistry)
@@ -18762,7 +18762,7 @@
           return [actions_1.SetViewportAction.create(model.id, { scroll: newScroll, zoom: model.zoom }, { animate })];
         }
         getScrollbar(event) {
-          return findViewportScrollbar2(event);
+          return findViewportScrollbar(event);
         }
         getScrollbarOrientation(scrollbar) {
           if (scrollbar.classList.contains("horizontal")) {
@@ -18784,7 +18784,7 @@
         (0, inversify_1.inject)(types_1.TYPES.ViewerOptions),
         __metadata("design:type", Object)
       ], ScrollMouseListener.prototype, "viewerOptions", void 0);
-      function findViewportScrollbar2(event) {
+      function findViewportScrollbar(event) {
         let element = event.target;
         while (element) {
           if (element.classList && element.classList.contains("sprotty-projection-bar")) {
@@ -18794,7 +18794,7 @@
         }
         return void 0;
       }
-      exports.findViewportScrollbar = findViewportScrollbar2;
+      exports.findViewportScrollbar = findViewportScrollbar;
     }
   });
 
@@ -20517,7 +20517,7 @@
       exports.PolylineEdgeView = PolylineEdgeView2 = __decorate([
         (0, inversify_1.injectable)()
       ], PolylineEdgeView2);
-      var JumpingPolylineEdgeView2 = class JumpingPolylineEdgeView extends PolylineEdgeView2 {
+      var JumpingPolylineEdgeView = class JumpingPolylineEdgeView extends PolylineEdgeView2 {
         constructor() {
           super(...arguments);
           this.jumpOffsetBefore = 5;
@@ -20640,11 +20640,11 @@
           return ` L ${anchorBefore.x},${anchorBefore.y} M ${anchorAfter.x},${anchorAfter.y}`;
         }
       };
-      exports.JumpingPolylineEdgeView = JumpingPolylineEdgeView2;
-      exports.JumpingPolylineEdgeView = JumpingPolylineEdgeView2 = __decorate([
+      exports.JumpingPolylineEdgeView = JumpingPolylineEdgeView;
+      exports.JumpingPolylineEdgeView = JumpingPolylineEdgeView = __decorate([
         (0, inversify_1.injectable)()
-      ], JumpingPolylineEdgeView2);
-      var PolylineEdgeViewWithGapsOnIntersections2 = class PolylineEdgeViewWithGapsOnIntersections extends JumpingPolylineEdgeView2 {
+      ], JumpingPolylineEdgeView);
+      var PolylineEdgeViewWithGapsOnIntersections2 = class PolylineEdgeViewWithGapsOnIntersections extends JumpingPolylineEdgeView {
         constructor() {
           super(...arguments);
           this.skipOffsetBefore = 3;
@@ -21661,7 +21661,7 @@
       var svg_exporter_1 = require_svg_exporter();
       var model_matching_1 = require_model_matching();
       var model_source_1 = require_model_source();
-      var LocalModelSource4 = class LocalModelSource extends model_source_1.ModelSource {
+      var LocalModelSource3 = class LocalModelSource extends model_source_1.ModelSource {
         constructor() {
           super(...arguments);
           this.currentRoot = smodel_factory_1.EMPTY_ROOT;
@@ -21866,28 +21866,28 @@
           (0, file_saver_1.saveAs)(blob, "diagram.svg");
         }
       };
-      exports.LocalModelSource = LocalModelSource4;
+      exports.LocalModelSource = LocalModelSource3;
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ILogger),
         __metadata("design:type", Object)
-      ], LocalModelSource4.prototype, "logger", void 0);
+      ], LocalModelSource3.prototype, "logger", void 0);
       __decorate([
         (0, inversify_1.inject)(model_source_1.ComputedBoundsApplicator),
         __metadata("design:type", model_source_1.ComputedBoundsApplicator)
-      ], LocalModelSource4.prototype, "computedBoundsApplicator", void 0);
+      ], LocalModelSource3.prototype, "computedBoundsApplicator", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IPopupModelProvider),
         (0, inversify_1.optional)(),
         __metadata("design:type", Object)
-      ], LocalModelSource4.prototype, "popupModelProvider", void 0);
+      ], LocalModelSource3.prototype, "popupModelProvider", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IModelLayoutEngine),
         (0, inversify_1.optional)(),
         __metadata("design:type", Object)
-      ], LocalModelSource4.prototype, "layoutEngine", void 0);
-      exports.LocalModelSource = LocalModelSource4 = __decorate([
+      ], LocalModelSource3.prototype, "layoutEngine", void 0);
+      exports.LocalModelSource = LocalModelSource3 = __decorate([
         (0, inversify_1.injectable)()
-      ], LocalModelSource4);
+      ], LocalModelSource3);
     }
   });
 
@@ -22516,7 +22516,7 @@
       }
       exports.cloneModel = cloneModel;
       function applyBounds(root, action) {
-        const index = new SModelIndex2();
+        const index = new SModelIndex();
         index.add(root);
         for (const b of action.bounds) {
           const element = index.getById(b.elementId);
@@ -22570,7 +22570,7 @@
         return void 0;
       }
       exports.findElement = findElement;
-      var SModelIndex2 = class {
+      var SModelIndex = class {
         constructor() {
           this.id2element = /* @__PURE__ */ new Map();
           this.id2parent = /* @__PURE__ */ new Map();
@@ -22619,7 +22619,7 @@
           throw new Error("Element has no root");
         }
       };
-      exports.SModelIndex = SModelIndex2;
+      exports.SModelIndex = SModelIndex;
     }
   });
 
@@ -22693,28 +22693,28 @@
         }
         SetModelAction2.create = create;
       })(SetModelAction || (exports.SetModelAction = SetModelAction = {}));
-      var UpdateModelAction2;
-      (function(UpdateModelAction3) {
-        UpdateModelAction3.KIND = "updateModel";
+      var UpdateModelAction;
+      (function(UpdateModelAction2) {
+        UpdateModelAction2.KIND = "updateModel";
         function create(input, options = {}) {
           if (Array.isArray(input)) {
             return {
-              kind: UpdateModelAction3.KIND,
+              kind: UpdateModelAction2.KIND,
               matches: input,
               animate: options.animate,
               cause: options.cause
             };
           } else {
             return {
-              kind: UpdateModelAction3.KIND,
+              kind: UpdateModelAction2.KIND,
               newRoot: input,
               animate: options.animate,
               cause: options.cause
             };
           }
         }
-        UpdateModelAction3.create = create;
-      })(UpdateModelAction2 || (exports.UpdateModelAction = UpdateModelAction2 = {}));
+        UpdateModelAction2.create = create;
+      })(UpdateModelAction || (exports.UpdateModelAction = UpdateModelAction = {}));
       var RequestPopupModelAction;
       (function(RequestPopupModelAction2) {
         RequestPopupModelAction2.KIND = "requestPopupModel";
@@ -22834,31 +22834,31 @@
         }
         SelectionResult2.create = create;
       })(SelectionResult || (exports.SelectionResult = SelectionResult = {}));
-      var CollapseExpandAction2;
-      (function(CollapseExpandAction3) {
-        CollapseExpandAction3.KIND = "collapseExpand";
+      var CollapseExpandAction;
+      (function(CollapseExpandAction2) {
+        CollapseExpandAction2.KIND = "collapseExpand";
         function create(options) {
           var _a, _b;
           return {
-            kind: CollapseExpandAction3.KIND,
+            kind: CollapseExpandAction2.KIND,
             expandIds: (_a = options.expandIds) !== null && _a !== void 0 ? _a : [],
             collapseIds: (_b = options.collapseIds) !== null && _b !== void 0 ? _b : []
           };
         }
-        CollapseExpandAction3.create = create;
-      })(CollapseExpandAction2 || (exports.CollapseExpandAction = CollapseExpandAction2 = {}));
-      var CollapseExpandAllAction2;
-      (function(CollapseExpandAllAction3) {
-        CollapseExpandAllAction3.KIND = "collapseExpandAll";
+        CollapseExpandAction2.create = create;
+      })(CollapseExpandAction || (exports.CollapseExpandAction = CollapseExpandAction = {}));
+      var CollapseExpandAllAction;
+      (function(CollapseExpandAllAction2) {
+        CollapseExpandAllAction2.KIND = "collapseExpandAll";
         function create(options = {}) {
           var _a;
           return {
-            kind: CollapseExpandAllAction3.KIND,
+            kind: CollapseExpandAllAction2.KIND,
             expand: (_a = options.expand) !== null && _a !== void 0 ? _a : true
           };
         }
-        CollapseExpandAllAction3.create = create;
-      })(CollapseExpandAllAction2 || (exports.CollapseExpandAllAction = CollapseExpandAllAction2 = {}));
+        CollapseExpandAllAction2.create = create;
+      })(CollapseExpandAllAction || (exports.CollapseExpandAllAction = CollapseExpandAllAction = {}));
       var OpenAction;
       (function(OpenAction2) {
         OpenAction2.KIND = "open";
@@ -23075,34 +23075,34 @@
         return (element) => element instanceof constructor;
       }
       exports.toTypeGuard = toTypeGuard;
-      function hasStringProp(object, propertyKey, optional3 = false) {
+      function hasStringProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? typeof property === "string" : optional3;
+        return property !== void 0 ? typeof property === "string" : optional2;
       }
       exports.hasStringProp = hasStringProp;
-      function hasBooleanProp(object, propertyKey, optional3 = false) {
+      function hasBooleanProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? typeof property === "boolean" : optional3;
+        return property !== void 0 ? typeof property === "boolean" : optional2;
       }
       exports.hasBooleanProp = hasBooleanProp;
-      function hasNumberProp(object, propertyKey, optional3 = false) {
+      function hasNumberProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? typeof property === "number" : optional3;
+        return property !== void 0 ? typeof property === "number" : optional2;
       }
       exports.hasNumberProp = hasNumberProp;
-      function hasObjectProp(object, propertyKey, optional3 = false) {
+      function hasObjectProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? AnyObject.is(property) : optional3;
+        return property !== void 0 ? AnyObject.is(property) : optional2;
       }
       exports.hasObjectProp = hasObjectProp;
-      function hasFunctionProp(object, propertyKey, optional3 = false) {
+      function hasFunctionProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? typeof property === "function" : optional3;
+        return property !== void 0 ? typeof property === "function" : optional2;
       }
       exports.hasFunctionProp = hasFunctionProp;
-      function hasArrayProp(object, propertyKey, optional3 = false) {
+      function hasArrayProp(object, propertyKey, optional2 = false) {
         const property = object[propertyKey];
-        return property !== void 0 ? Array.isArray(property) : optional3;
+        return property !== void 0 ? Array.isArray(property) : optional2;
       }
       exports.hasArrayProp = hasArrayProp;
     }
@@ -23116,21 +23116,21 @@
       exports.CompoundOperation = exports.Operation = exports.RejectAction = exports.ResponseAction = exports.RequestAction = exports.ActionMessage = exports.Action = void 0;
       var sprotty = require_actions2();
       var type_util_1 = require_type_util();
-      var Action4;
-      (function(Action5) {
+      var Action3;
+      (function(Action4) {
         function is(object) {
           return type_util_1.AnyObject.is(object) && (0, type_util_1.hasStringProp)(object, "kind");
         }
-        Action5.is = is;
+        Action4.is = is;
         function hasKind(object, kind) {
-          return Action5.is(object) && object.kind === kind;
+          return Action4.is(object) && object.kind === kind;
         }
-        Action5.hasKind = hasKind;
-      })(Action4 || (exports.Action = Action4 = {}));
+        Action4.hasKind = hasKind;
+      })(Action3 || (exports.Action = Action3 = {}));
       var ActionMessage;
       (function(ActionMessage2) {
         function is(object, typeguard) {
-          const actionGuard = typeguard !== null && typeguard !== void 0 ? typeguard : Action4.is;
+          const actionGuard = typeguard !== null && typeguard !== void 0 ? typeguard : Action3.is;
           return type_util_1.AnyObject.is(object) && (0, type_util_1.hasStringProp)(object, "clientId") && "action" in object && actionGuard(object.action);
         }
         ActionMessage2.is = is;
@@ -23138,7 +23138,7 @@
       var RequestAction;
       (function(RequestAction2) {
         function is(object) {
-          return Action4.is(object) && (0, type_util_1.hasStringProp)(object, "requestId");
+          return Action3.is(object) && (0, type_util_1.hasStringProp)(object, "requestId");
         }
         RequestAction2.is = is;
         function hasKind(object, kind) {
@@ -23153,7 +23153,7 @@
       var ResponseAction;
       (function(ResponseAction2) {
         function is(object) {
-          return Action4.is(object) && (0, type_util_1.hasStringProp)(object, "responseId");
+          return Action3.is(object) && (0, type_util_1.hasStringProp)(object, "responseId");
         }
         ResponseAction2.is = is;
         function hasValidResponseId(object) {
@@ -23165,7 +23165,7 @@
       (function(RejectAction2) {
         RejectAction2.KIND = "rejectRequest";
         function is(object) {
-          return Action4.hasKind(object, RejectAction2.KIND) && (0, type_util_1.hasStringProp)(object, "message");
+          return Action3.hasKind(object, RejectAction2.KIND) && (0, type_util_1.hasStringProp)(object, "message");
         }
         RejectAction2.is = is;
         function create(message, options = {}) {
@@ -23176,7 +23176,7 @@
       var Operation;
       (function(Operation2) {
         function is(object) {
-          return Action4.is(object) && "isOperation" in object && object.isOperation === true;
+          return Action3.is(object) && "isOperation" in object && object.isOperation === true;
         }
         Operation2.is = is;
         function hasKind(object, kind) {
@@ -23434,18 +23434,18 @@
         }
         CreateOperation2.hasKind = hasKind;
       })(CreateOperation || (exports.CreateOperation = CreateOperation = {}));
-      var CreateNodeOperation2;
-      (function(CreateNodeOperation3) {
-        CreateNodeOperation3.KIND = "createNode";
+      var CreateNodeOperation;
+      (function(CreateNodeOperation2) {
+        CreateNodeOperation2.KIND = "createNode";
         function is(object) {
-          return CreateOperation.hasKind(object, CreateNodeOperation3.KIND);
+          return CreateOperation.hasKind(object, CreateNodeOperation2.KIND);
         }
-        CreateNodeOperation3.is = is;
+        CreateNodeOperation2.is = is;
         function create(elementTypeId, options = {}) {
-          return Object.assign({ kind: CreateNodeOperation3.KIND, isOperation: true, elementTypeId }, options);
+          return Object.assign({ kind: CreateNodeOperation2.KIND, isOperation: true, elementTypeId }, options);
         }
-        CreateNodeOperation3.create = create;
-      })(CreateNodeOperation2 || (exports.CreateNodeOperation = CreateNodeOperation2 = {}));
+        CreateNodeOperation2.create = create;
+      })(CreateNodeOperation || (exports.CreateNodeOperation = CreateNodeOperation = {}));
       var CreateEdgeOperation2;
       (function(CreateEdgeOperation3) {
         CreateEdgeOperation3.KIND = "createEdge";
@@ -24033,18 +24033,18 @@
         }
         SetModelAction2.create = create;
       })(SetModelAction || (exports.SetModelAction = SetModelAction = {}));
-      var UpdateModelAction2;
-      (function(UpdateModelAction3) {
-        UpdateModelAction3.KIND = "updateModel";
+      var UpdateModelAction;
+      (function(UpdateModelAction2) {
+        UpdateModelAction2.KIND = "updateModel";
         function is(action) {
-          return base_protocol_1.Action.hasKind(action, UpdateModelAction3.KIND) && (0, type_util_1.hasObjectProp)(action, "newRoot");
+          return base_protocol_1.Action.hasKind(action, UpdateModelAction2.KIND) && (0, type_util_1.hasObjectProp)(action, "newRoot");
         }
-        UpdateModelAction3.is = is;
+        UpdateModelAction2.is = is;
         function create(newRoot, options = {}) {
-          return Object.assign({ kind: UpdateModelAction3.KIND, newRoot, animate: true }, options);
+          return Object.assign({ kind: UpdateModelAction2.KIND, newRoot, animate: true }, options);
         }
-        UpdateModelAction3.create = create;
-      })(UpdateModelAction2 || (exports.UpdateModelAction = UpdateModelAction2 = {}));
+        UpdateModelAction2.create = create;
+      })(UpdateModelAction || (exports.UpdateModelAction = UpdateModelAction = {}));
       var SourceModelChangedAction;
       (function(SourceModelChangedAction2) {
         SourceModelChangedAction2.KIND = "sourceModelChanged";
@@ -29331,7 +29331,7 @@ ${JSON.stringify(message, null, 4)}`);
       exports.KeyListener = KeyListener = __decorate([
         (0, inversify_1.injectable)()
       ], KeyListener);
-      var MouseListener3 = class MouseListener extends sprotty_1.MouseListener {
+      var MouseListener2 = class MouseListener extends sprotty_1.MouseListener {
         mouseOver(target, event) {
           return [];
         }
@@ -29372,10 +29372,10 @@ ${JSON.stringify(message, null, 4)}`);
           return vnode;
         }
       };
-      exports.MouseListener = MouseListener3;
-      exports.MouseListener = MouseListener3 = __decorate([
+      exports.MouseListener = MouseListener2;
+      exports.MouseListener = MouseListener2 = __decorate([
         (0, inversify_1.injectable)()
-      ], MouseListener3);
+      ], MouseListener2);
     }
   });
 
@@ -51261,41 +51261,10 @@ ${JSON.stringify(message, null, 4)}`);
 
   // models.ts
   var import_sprotty2 = __toESM(require_lib2());
-  var Icon = class extends import_sprotty2.SShapeElementImpl {
-    constructor() {
-      super(...arguments);
-      this.size = {
-        width: 32,
-        height: 32
-      };
-    }
-  };
-  Icon.DEFAULT_FEATURES = [
-    import_sprotty2.boundsFeature,
-    import_sprotty2.layoutContainerFeature,
-    import_sprotty2.layoutableChildFeature,
-    import_sprotty2.fadeFeature
-  ];
-  var TaskNode = class extends import_sprotty2.RectangularNode {
-    // name: string;
-    get hurma() {
-      return "hurma";
-    }
-    // Использутеся пока только в popup
-    /* get editableLabel() {
-      let titleElement = this.children.find((item) => item.type == "task:title");
-      if (titleElement && isEditableLabel(titleElement)) {
-        return titleElement;
-      }
-    } */
-  };
-  var TaskTitle = class extends import_sprotty2.SLabelImpl {
-  };
   var Node4diac = class extends import_sprotty2.RectangularNode {
   };
 
   // model-source.ts
-  var import_sprotty_protocol2 = __toESM(require_lib());
   var import_sprotty4 = __toESM(require_lib2());
   var import_inversify3 = __toESM(require_inversify());
 
@@ -51351,48 +51320,6 @@ ${JSON.stringify(message, null, 4)}`);
     }
     CreatingFbAction2.create = create;
   })(CreatingFbAction || (CreatingFbAction = {}));
-  var CreateInpCommand = class extends import_sprotty3.Command {
-    constructor(action) {
-      super();
-      this.action = action;
-    }
-    execute(context) {
-      this.id = (0, import_sprotty3.createRandomId)();
-      let model = context.root;
-      let element = model.index.getById(this.action.parentId);
-      if (element instanceof import_sprotty3.SParentElementImpl) {
-        let inputs = element.children.find(
-          (item) => item.type == "node4diac:inputs"
-        );
-        if (inputs) {
-          let port = context.modelFactory.createElement({
-            type: "node4diac:port",
-            id: this.id,
-            children: [
-              {
-                id: `${this.id}_title`,
-                text: "INP",
-                type: "node4diac:port_title"
-              }
-            ]
-          });
-          inputs.add(port);
-        }
-      }
-      return context.root;
-    }
-    undo(context) {
-      return context.root;
-    }
-    redo(context) {
-      return context.root;
-    }
-  };
-  CreateInpCommand.KIND = CreatingInpAction.KIND;
-  CreateInpCommand = __decorateClass([
-    (0, import_inversify2.injectable)(),
-    __decorateParam(0, (0, import_inversify2.inject)(import_client.TYPES.Action))
-  ], CreateInpCommand);
 
   // model-source.ts
   var ClassDiagramModelSource = class extends import_sprotty4.LocalModelSource {
@@ -51485,54 +51412,6 @@ ${JSON.stringify(message, null, 4)}`);
           ]);
           this.updateModel();
         }
-      }
-    }
-    handleCollapseExpandAction(action) {
-      action.expandIds.forEach((id) => this.expansionState[id] = true);
-      action.collapseIds.forEach((id) => this.expansionState[id] = false);
-      this.applyExpansionState();
-      this.updateModel();
-    }
-    handleCollapseExpandAllAction(action) {
-      for (const id in this.expansionState)
-        this.expansionState[id] === action.expand;
-      this.applyExpansionState();
-      this.updateModel();
-    }
-    applyExpansionState() {
-      const index = new import_sprotty_protocol2.SModelIndex();
-      index.add(this.currentRoot);
-      for (const id in this.expansionState) {
-        const element = index.getById(id);
-        if (element && element.children) {
-          const expanded = this.expansionState[id];
-          element.expanded = expanded;
-        }
-      }
-    }
-    addExpandedChildren(element) {
-      if (!element.children)
-        return;
-      switch (element.id) {
-        case "node0":
-          element.children.push({
-            id: "node0_ops",
-            type: "comp:comp",
-            layout: "vbox",
-            children: [
-              {
-                id: "node0_op0",
-                type: "label:text",
-                text: "+ foo(): integer"
-              },
-              {
-                id: "node0_op1",
-                type: "label:text",
-                text: "# bar(x: string): void"
-              }
-            ]
-          });
-          break;
       }
     }
     initializeModel() {
@@ -51644,36 +51523,6 @@ ${JSON.stringify(message, null, 4)}`);
             ]
           }
         ]
-      };
-      let task1 = {
-        id: "task1",
-        type: "task",
-        position: {
-          x: 500,
-          y: 500
-        },
-        // size: { width: 100, height: 100 },
-        // layout: "stack",
-        children: [
-          {
-            id: "task1_title",
-            text: "Task #1",
-            type: "task:title"
-            // position: { x: 20, y: 0 },
-          }
-          // <SLabel>{
-          //   id: "task2_title",
-          //   text: "Task #2",
-          //   type: "task:title",
-          //   // position: { x: 20, y: 0 },
-          // },
-        ]
-      };
-      this.expansionState = {
-        node0: false,
-        package0: false
-        // node1: false,
-        // node2: false,
       };
       const graph = {
         id: "root",
@@ -52105,7 +51954,7 @@ ${JSON.stringify(message, null, 4)}`);
 
   // di.config.ts
   var import_client6 = __toESM(require_lib6());
-  var createContainer = (containerId, nodeCreator) => {
+  var createContainer = (containerId) => {
     const myModule = new import_inversify9.ContainerModule((bind, unbind, isBound, rebind) => {
       bind(import_client6.TYPES.ModelSource).to(ClassDiagramModelSource).inSingletonScope();
       rebind(import_client6.TYPES.ILogger).to(import_sprotty9.ConsoleLogger).inSingletonScope();
@@ -52116,7 +51965,7 @@ ${JSON.stringify(message, null, 4)}`);
         // enable: [withEditLabelFeature, layoutableChildFeature], // плюсуются к SNodeImpl.DEFAULT_FEATURES
         disable: [import_sprotty9.hoverFeedbackFeature, import_sprotty9.popupFeature, import_sprotty9.connectableFeature]
       });
-      (0, import_sprotty9.configureModelElement)(context, "node4diac:title", TaskTitle, import_sprotty9.SLabelView, {
+      (0, import_sprotty9.configureModelElement)(context, "node4diac:title", import_sprotty9.SLabelImpl, import_sprotty9.SLabelView, {
         enable: [import_sprotty9.editLabelFeature]
       });
       (0, import_sprotty9.configureModelElement)(
@@ -52144,19 +51993,10 @@ ${JSON.stringify(message, null, 4)}`);
       (0, import_sprotty9.configureModelElement)(
         context,
         "node4diac:port_title",
-        TaskTitle,
+        import_sprotty9.SLabelImpl,
         import_sprotty9.SLabelView
       );
       (0, import_sprotty9.configureModelElement)(context, import_client6.DefaultTypes.EDGE, import_client6.GEdge, WorkflowEdgeView);
-      (0, import_sprotty9.configureModelElement)(context, "task", TaskNode, TaskNodeView, {
-        // enable: [withEditLabelFeature, layoutableChildFeature], // плюсуются к SNodeImpl.DEFAULT_FEATURES
-        // boundsFeature, layoutContainerFeature,
-        enable: [import_sprotty9.layoutableChildFeature],
-        disable: [import_sprotty9.hoverFeedbackFeature, import_sprotty9.popupFeature, import_sprotty9.connectableFeature]
-      });
-      (0, import_sprotty9.configureModelElement)(context, "task:title", TaskTitle, import_sprotty9.SLabelView, {
-        enable: [import_sprotty9.editLabelFeature]
-      });
       (0, import_sprotty9.configureViewerOptions)(context, {
         needsClientLayout: true,
         baseDiv: containerId
@@ -52187,8 +52027,8 @@ ${JSON.stringify(message, null, 4)}`);
 
   // index.ts
   function run() {
-    var _a, _b, _c;
-    const container = createContainer("sprotty-container", createNode);
+    var _a, _b;
+    const container = createContainer("sprotty-container");
     const modelSource = container.get(import_sprotty10.TYPES.ModelSource);
     modelSource.updateModel();
     const dispatcher = container.get(import_sprotty10.TYPES.IActionDispatcher);
@@ -52200,24 +52040,8 @@ ${JSON.stringify(message, null, 4)}`);
     });
     let btnUpdate = (_b = document.getElementsByClassName("btnUpdate")) == null ? void 0 : _b.item(0);
     btnUpdate.addEventListener("click", async (e) => {
-      console.log("btnUpdate", e);
       modelSource.updateModel();
     });
-    let btnAddEdge = (_c = document.getElementsByClassName("btnAddEdge")) == null ? void 0 : _c.item(0);
-    btnAddEdge.addEventListener("click", async (e) => {
-      console.log("btnAddEdge", e);
-      const edge0 = {
-        id: "edge0",
-        type: "edge:straight",
-        sourceId: "task1",
-        targetId: "task2",
-        routerKind: "manhattan"
-      };
-      modelSource.addElements([edge0]);
-    });
-    function createNode(point, type) {
-      console.log("createNode", point, type);
-    }
   }
   document.addEventListener("DOMContentLoaded", () => run());
 })();

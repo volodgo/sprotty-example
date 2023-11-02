@@ -7,42 +7,20 @@ import {
   CommandExecutionContext,
   CommitModelAction,
   Connectable,
-  MouseListener,
   PolylineEdgeRouter,
-  SButtonImpl,
   SModelElementImpl,
   SModelRootImpl,
-  SRoutableElementImpl,
-  SRoutingHandleImpl,
   Selectable,
-  SwitchEditModeAction,
   TYPES,
   createRandomId,
   findChildrenAtPosition,
   findParentByFeature,
-  findViewportScrollbar,
   isBoundsAware,
   isConnectable,
-  isCtrlOrCmd,
-  isSelectable,
   setClass,
 } from "sprotty";
-import {
-  Action,
-  BringToFrontAction,
-  GetSelectionAction,
-  ResponseAction,
-  SelectAction,
-  SelectAllAction,
-  SelectionResult,
-} from "sprotty-protocol/lib/actions";
-import { toArray } from "sprotty/lib/utils/iterable";
-import {
-  CreatableEdge,
-  creatingEdgeFeature,
-  isCreatableEdge,
-  isCreatingEdge,
-} from "./model";
+import { Action } from "sprotty-protocol/lib/actions";
+import { CreatableEdge, isCreatableEdge } from "./model";
 import {
   Bounds,
   CreateEdgeOperation,

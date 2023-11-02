@@ -1,4 +1,4 @@
-import { Container, ContainerModule, inject, injectable } from "inversify";
+import { Container, ContainerModule } from "inversify";
 import {
   configureModelElement,
   configureViewerOptions,
@@ -9,7 +9,6 @@ import {
   expandModule,
   fadeModule,
   hoverFeedbackFeature,
-  JumpingPolylineEdgeView,
   layoutableChildFeature,
   loadDefaultModules,
   LogLevel,
@@ -20,6 +19,7 @@ import {
   SEdgeImpl,
   SGraphImpl,
   SGraphView,
+  SLabelImpl,
   SLabelView,
   SPortImpl,
   SRoutingHandleImpl,
@@ -31,25 +31,18 @@ import {
   PortViewWithExternalLabel,
   WorkflowEdgeView,
 } from "./views";
-import { Icon, TaskNode, TaskTitle, TaskPort, Node4diac } from "./models";
+import { Node4diac } from "./models";
 import { ClassDiagramModelSource } from "./model-source";
 import creatingEdgeModule from "./features/creatingEdge/di.config";
 import { creatingEdgeFeature } from "./features/creatingEdge/model";
 import creatingNodesModule from "./features/creatingNodes/di.config";
 import { DefaultTypes, GEdge, TYPES } from "@eclipse-glsp/client";
 
-import { Action, Point } from "sprotty-protocol";
-
-export const createContainer = (
-  containerId: string,
-  nodeCreator: (point: Point, type: string) => void
-) => {
+export const createContainer = (containerId: string) => {
   const myModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     bind(TYPES.ModelSource).to(ClassDiagramModelSource).inSingletonScope();
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.log);
-
-    // bind(TYPES.MouseListener).to(DroppableMouseListener).inSingletonScope();
 
     const context = { bind, unbind, isBound, rebind };
     configureModelElement(context, "graph", SGraphImpl, SGraphView);
@@ -60,7 +53,7 @@ export const createContainer = (
     });
 
     // Тайтл редактируемый
-    configureModelElement(context, "node4diac:title", TaskTitle, SLabelView, {
+    configureModelElement(context, "node4diac:title", SLabelImpl, SLabelView, {
       enable: [editLabelFeature],
     });
 
@@ -93,33 +86,16 @@ export const createContainer = (
     configureModelElement(
       context,
       "node4diac:port_title",
-      TaskTitle,
+      SLabelImpl,
       SLabelView
     );
 
     configureModelElement(context, DefaultTypes.EDGE, GEdge, WorkflowEdgeView);
 
-    configureModelElement(context, "task", TaskNode, TaskNodeView, {
-      // enable: [withEditLabelFeature, layoutableChildFeature], // плюсуются к SNodeImpl.DEFAULT_FEATURES
-      // boundsFeature, layoutContainerFeature,
-      enable: [layoutableChildFeature],
-      disable: [hoverFeedbackFeature, popupFeature, connectableFeature],
-    });
-    // Тайтл редактируемый
-    configureModelElement(context, "task:title", TaskTitle, SLabelView, {
-      enable: [editLabelFeature],
-    });
-
     configureViewerOptions(context, {
       needsClientLayout: true,
       baseDiv: containerId,
     });
-    // configureModelElement(
-    //   context,
-    //   "pre-rendered",
-    //   PreRenderedElementImpl,
-    //   PreRenderedView
-    // );
 
     configureModelElement(
       context,

@@ -1,12 +1,9 @@
 import "reflect-metadata";
 import { IActionDispatcher, LocalModelSource, TYPES } from "sprotty";
-import { SEdge, Point } from "sprotty-protocol";
 import { createContainer } from "./di.config";
-// import { graph } from "./model-source";
-import { TaskNode } from "./models";
 
 export default function run() {
-  const container = createContainer("sprotty-container", createNode);
+  const container = createContainer("sprotty-container");
   // let mouseTracker = container.get(MousePositionTracker)
   const modelSource = container.get<LocalModelSource>(TYPES.ModelSource);
   modelSource.updateModel();
@@ -24,44 +21,9 @@ export default function run() {
 
   let btnUpdate = document.getElementsByClassName("btnUpdate")?.item(0);
   btnUpdate.addEventListener("click", async (e: PointerEvent) => {
-    console.log("btnUpdate", e);
-    // let action = SelectAllAction.create();
-    // let boundsAction = RequestBoundsAction.create(modelSource.model);
-    // let rBounds = await dispatcher.request<ComputedBoundsAction>(boundsAction);
-    // console.log("rBoudns", rBounds);
-    // await dispatcher.dispatch(rBounds);
-
     modelSource.updateModel();
-
-    // let action = RequestModelAction.create();
-    // let r = await dispatcher.dispatch(action);
-    // console.log("r", r);
-
-    /* let selectAction = SelectAction.create({ selectedElementsIDs: ["node0"] });
-    let rSelect = await dispatcher.dispatch(selectAction);
-    console.log("rSelect", rSelect); */
-    // dispatcher.request<SelectAction>
   });
 
-  let btnAddEdge = document.getElementsByClassName("btnAddEdge")?.item(0);
-  btnAddEdge.addEventListener("click", async (e: PointerEvent) => {
-    console.log("btnAddEdge", e);
-
-    const edge0: SEdge = {
-      id: "edge0",
-      type: "edge:straight",
-      sourceId: "task1",
-      targetId: "task2",
-      routerKind: "manhattan",
-    };
-    // modelSource.addElements([{ element: edge0, parentId: "graph" }]);
-    modelSource.addElements([edge0]);
-    // createNode();
-  });
-
-  function createNode(point: Point, type: string) {
-    console.log("createNode", point, type);
-  }
 }
 
 document.addEventListener("DOMContentLoaded", () => run());
