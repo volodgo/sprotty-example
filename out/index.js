@@ -52194,10 +52194,9 @@ ${JSON.stringify(message, null, 4)}`);
     const dispatcher = container.get(import_sprotty10.TYPES.IActionDispatcher);
     let btnExport = (_a = document.getElementsByClassName("btnExport")) == null ? void 0 : _a.item(0);
     btnExport.addEventListener("click", async (e) => {
-      console.log("btnExport", e);
-      console.log(modelSource.model);
       let str = JSON.stringify(modelSource.model, null, " ");
       console.log(str);
+      alert(str);
     });
     let btnUpdate = (_b = document.getElementsByClassName("btnUpdate")) == null ? void 0 : _b.item(0);
     btnUpdate.addEventListener("click", async (e) => {
