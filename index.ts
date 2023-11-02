@@ -15,10 +15,11 @@ export default function run() {
 
   let btnExport = document.getElementsByClassName("btnExport")?.item(0);
   btnExport.addEventListener("click", async (e: PointerEvent) => {
-    console.log("btnExport", e);
-    console.log(modelSource.model);
+    // console.log("btnExport", e);
+    // console.log(modelSource.model);
     let str = JSON.stringify(modelSource.model, null, " ");
     console.log(str);
+    alert(str);
   });
 
   let btnUpdate = document.getElementsByClassName("btnUpdate")?.item(0);
