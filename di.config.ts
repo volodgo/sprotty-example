@@ -26,7 +26,6 @@ import {
   SRoutingHandleView,
 } from "sprotty";
 import {
-  TaskNodeView,
   Node4diacView,
   PortViewWithExternalLabel,
   WorkflowEdgeView,

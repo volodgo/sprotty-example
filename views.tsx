@@ -2,8 +2,7 @@
 import { svg } from 'sprotty/lib/lib/jsx';
 import { injectable } from 'inversify';
 import { VNode } from 'snabbdom';
-import { ATTR_BBOX_ELEMENT, Expandable, IView, IViewArgs, PolylineEdgeViewWithGapsOnIntersections, RectangularNodeView, RenderingContext, SLabelImpl, SNodeImpl, SPortImpl, ShapeView, isEdgeLayoutable, setAttr } from 'sprotty';
-import { Icon, TaskNode } from './models';
+import { ATTR_BBOX_ELEMENT, IViewArgs, PolylineEdgeViewWithGapsOnIntersections, RenderingContext, SNodeImpl, SPortImpl, ShapeView, setAttr } from 'sprotty';
 import { Point, angleOfPoint, toDegrees } from 'sprotty-protocol';
 import { GEdge, getSubType } from '@eclipse-glsp/client';
 
@@ -63,23 +62,5 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
 }
 
 
-
-@injectable()
-export class TaskNodeView implements IView {
-    render(node: Readonly<TaskNode>, context: RenderingContext): VNode {
-        const position = 50;
-        return <g>
-            <rect class-sprotty-node={true} class-task={true}
-                class-finished={node.isFinished}
-                width={Math.max(node.size.width, 0)}
-                height={Math.max(node.size.height, 0)}
-            >
-            </rect>
-            {/* <text>{node.position.x}:{node.position.y}</text> */}
-            {context.renderChildren(node)}
-            {/* <text x="10" y="10">{node.name} ({node.type})</text> */}
-        </g>;
-    }
-}
 
 

@@ -12636,10 +12636,10 @@
       var model_1 = require_model2();
       var model_2 = require_model9();
       exports.edgeLayoutFeature = Symbol("edgeLayout");
-      function isEdgeLayoutable2(element) {
+      function isEdgeLayoutable(element) {
         return element instanceof smodel_1.SChildElementImpl && element.parent instanceof model_2.SRoutableElementImpl && checkEdgeLayoutable(element) && (0, model_1.isBoundsAware)(element) && element.hasFeature(exports.edgeLayoutFeature);
       }
-      exports.isEdgeLayoutable = isEdgeLayoutable2;
+      exports.isEdgeLayoutable = isEdgeLayoutable;
       function checkEdgeLayoutable(element) {
         return "edgePlacement" in element;
       }
@@ -13122,7 +13122,7 @@
         model_4.fadeFeature,
         model_5.hoverFeedbackFeature
       ];
-      var SLabelImpl3 = class extends model_1.SShapeElementImpl {
+      var SLabelImpl2 = class extends model_1.SShapeElementImpl {
         constructor() {
           super(...arguments);
           this.selected = false;
@@ -13130,8 +13130,8 @@
           this.opacity = 1;
         }
       };
-      exports.SLabelImpl = SLabelImpl3;
-      SLabelImpl3.DEFAULT_FEATURES = [
+      exports.SLabelImpl = SLabelImpl2;
+      SLabelImpl2.DEFAULT_FEATURES = [
         model_1.boundsFeature,
         model_1.alignFeature,
         model_1.layoutableChildFeature,
@@ -14299,7 +14299,7 @@
       exports.CircularNodeView = CircularNodeView = __decorate([
         (0, inversify_1.injectable)()
       ], CircularNodeView);
-      var RectangularNodeView2 = class RectangularNodeView extends views_1.ShapeView {
+      var RectangularNodeView = class RectangularNodeView extends views_1.ShapeView {
         render(node, context, args) {
           if (!this.isVisible(node, context)) {
             return void 0;
@@ -14312,10 +14312,10 @@
           );
         }
       };
-      exports.RectangularNodeView = RectangularNodeView2;
-      exports.RectangularNodeView = RectangularNodeView2 = __decorate([
+      exports.RectangularNodeView = RectangularNodeView;
+      exports.RectangularNodeView = RectangularNodeView = __decorate([
         (0, inversify_1.injectable)()
-      ], RectangularNodeView2);
+      ], RectangularNodeView);
       var DiamondNodeView = class DiamondNodeView extends views_1.ShapeView {
         render(node, context, args) {
           if (!this.isVisible(node, context)) {
@@ -51240,24 +51240,6 @@ ${JSON.stringify(message, null, 4)}`);
   WorkflowEdgeView = __decorateClass([
     (0, import_inversify.injectable)()
   ], WorkflowEdgeView);
-  var TaskNodeView = class {
-    render(node, context) {
-      const position = 50;
-      return /* @__PURE__ */ (0, import_jsx.svg)("g", null, /* @__PURE__ */ (0, import_jsx.svg)(
-        "rect",
-        {
-          "class-sprotty-node": true,
-          "class-task": true,
-          "class-finished": node.isFinished,
-          width: Math.max(node.size.width, 0),
-          height: Math.max(node.size.height, 0)
-        }
-      ), context.renderChildren(node));
-    }
-  };
-  TaskNodeView = __decorateClass([
-    (0, import_inversify.injectable)()
-  ], TaskNodeView);
 
   // models.ts
   var import_sprotty2 = __toESM(require_lib2());
@@ -51299,15 +51281,15 @@ ${JSON.stringify(message, null, 4)}`);
     (0, import_inversify2.injectable)()
   ], DroppableMouseListener);
   var CreatingInpAction;
-  ((CreatingInpAction3) => {
-    CreatingInpAction3.KIND = "CreatingInp";
+  ((CreatingInpAction2) => {
+    CreatingInpAction2.KIND = "CreatingInp";
     function create(parentId) {
       return {
-        kind: CreatingInpAction3.KIND,
+        kind: CreatingInpAction2.KIND,
         parentId
       };
     }
-    CreatingInpAction3.create = create;
+    CreatingInpAction2.create = create;
   })(CreatingInpAction || (CreatingInpAction = {}));
   var CreatingFbAction;
   ((CreatingFbAction2) => {
@@ -52031,7 +52013,6 @@ ${JSON.stringify(message, null, 4)}`);
     const container = createContainer("sprotty-container");
     const modelSource = container.get(import_sprotty10.TYPES.ModelSource);
     modelSource.updateModel();
-    const dispatcher = container.get(import_sprotty10.TYPES.IActionDispatcher);
     let btnExport = (_a = document.getElementsByClassName("btnExport")) == null ? void 0 : _a.item(0);
     btnExport.addEventListener("click", async (e) => {
       let str = JSON.stringify(modelSource.model, null, " ");

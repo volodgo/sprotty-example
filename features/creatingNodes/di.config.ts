@@ -1,9 +1,5 @@
 import { ContainerModule } from "inversify";
-import {
-  CreateInpCommand,
-  CreatingInpAction,
-  DroppableMouseListener,
-} from "./creatingNodes";
+import { DroppableMouseListener } from "./creatingNodes";
 import { TYPES, configureCommand } from "@eclipse-glsp/client";
 
 const creatingEdgeModule = new ContainerModule(
