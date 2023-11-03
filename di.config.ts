@@ -44,6 +44,7 @@ export const createContainer = (containerId: string) => {
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.log);
 
     const context = { bind, unbind, isBound, rebind };
+
     configureModelElement(context, "graph", SGraphImpl, SGraphView);
 
     configureModelElement(context, "node4diac", Node4diac, Node4diacView, {
@@ -74,14 +75,6 @@ export const createContainer = (containerId: string) => {
       }
     );
 
-    // Грань
-    configureModelElement(
-      context,
-      "edge:straight",
-      SEdgeImpl,
-      PolylineEdgeView
-    );
-
     configureModelElement(
       context,
       "node4diac:port_title",
@@ -89,6 +82,7 @@ export const createContainer = (containerId: string) => {
       SLabelView
     );
 
+    // связь
     configureModelElement(context, DefaultTypes.EDGE, GEdge, WorkflowEdgeView);
 
     configureViewerOptions(context, {
