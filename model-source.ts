@@ -8,6 +8,7 @@ import {
 } from "sprotty-protocol";
 import {
   ActionHandlerRegistry,
+  CommitModelAction,
   LocalModelSource,
   createRandomId,
 } from "sprotty";
@@ -16,6 +17,7 @@ import {
   CreatingFbAction,
   CreatingInpAction,
 } from "./features/creatingNodes/creatingNodes";
+import { SelectAction } from "@eclipse-glsp/client";
 
 @injectable()
 export class ClassDiagramModelSource extends LocalModelSource {
@@ -43,7 +45,9 @@ export class ClassDiagramModelSource extends LocalModelSource {
         super.handle(action);
     }
   }
+
   async creatingFb(action: CreatingFbAction) {
+    await this.actionDispatcher.dispatch(CommitModelAction.create());
     let point = action.point;
     const viewport = await this.getViewport();
     const adjust = (offset: number) => {
@@ -53,7 +57,7 @@ export class ClassDiagramModelSource extends LocalModelSource {
       x: viewport.scroll.x + adjust(point.x),
       y: viewport.scroll.y + adjust(point.y),
     };
-    console.log(action.point);
+    // console.log(action.point);
     let id = createRandomId();
     let newNode = <SNode>{
       id: id,
@@ -88,9 +92,22 @@ export class ClassDiagramModelSource extends LocalModelSource {
       ],
     };
     this.addElements([{ element: newNode, parentId: this.model.id }]);
+    // В addElements итак вызывается this.updateModel();
+
+    /* let currentSelection = await this.getSelection();
+    let selectedIds = Array.from(currentSelection).map((item) => item.id);
+    this.actionDispatcher.dispatch(
+      SelectAction.create({
+        selectedElementsIDs: [id],
+        deselectedElementsIDs: selectedIds,
+      })
+    ); */
     // this.updateModel();
+    // this.commitModel(this.model);
   }
-  creatingInp(action: CreatingInpAction) {
+
+  async creatingInp(action: CreatingInpAction) {
+    await this.actionDispatcher.dispatch(CommitModelAction.create());
     let id = createRandomId();
     let parent = this.model.children.find((item) => item.id == action.parentId);
     if (parent) {
@@ -129,9 +146,9 @@ export class ClassDiagramModelSource extends LocalModelSource {
       },
       size: { width: 100, height: 100 },
       // layout: "vbox",
-      layoutOptions: {
-        resizeContainer: true,
-      },
+      // layoutOptions: {
+      //   resizeContainer: true,
+      // },
       children: [
         <SLabel>{
           id: "node1_title",

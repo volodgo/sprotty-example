@@ -892,8 +892,8 @@
         }
         return targets;
       }
-      function _getServiceIdentifierForProperty(inject3, multiInject, propertyName, className) {
-        var serviceIdentifier = inject3 || multiInject;
+      function _getServiceIdentifierForProperty(inject4, multiInject, propertyName, className) {
+        var serviceIdentifier = inject4 || multiInject;
         if (serviceIdentifier === void 0) {
           var msg = ERROR_MSGS.MISSING_INJECTABLE_ANNOTATION + " for property " + String(propertyName) + " in class " + className + ".";
           throw new Error(msg);
@@ -4010,8 +4010,8 @@
       exports.inject = void 0;
       var METADATA_KEY = __importStar(require_metadata_keys());
       var inject_base_1 = require_inject_base();
-      var inject3 = (0, inject_base_1.injectBase)(METADATA_KEY.INJECT_TAG);
-      exports.inject = inject3;
+      var inject4 = (0, inject_base_1.injectBase)(METADATA_KEY.INJECT_TAG);
+      exports.inject = inject4;
     }
   });
 
@@ -4555,18 +4555,18 @@
         }
         RejectAction2.create = create;
       })(RejectAction || (exports.RejectAction = RejectAction = {}));
-      var RequestModelAction;
-      (function(RequestModelAction2) {
-        RequestModelAction2.KIND = "requestModel";
+      var RequestModelAction2;
+      (function(RequestModelAction3) {
+        RequestModelAction3.KIND = "requestModel";
         function create(options) {
           return {
-            kind: RequestModelAction2.KIND,
+            kind: RequestModelAction3.KIND,
             options,
             requestId: generateRequestId()
           };
         }
-        RequestModelAction2.create = create;
-      })(RequestModelAction || (exports.RequestModelAction = RequestModelAction = {}));
+        RequestModelAction3.create = create;
+      })(RequestModelAction2 || (exports.RequestModelAction = RequestModelAction2 = {}));
       var SetModelAction;
       (function(SetModelAction2) {
         SetModelAction2.KIND = "setModel";
@@ -5618,14 +5618,14 @@
       };
       exports.SModelRootImpl = SModelRootImpl2;
       var ID_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
-      function createRandomId3(length = 8) {
+      function createRandomId4(length = 8) {
         let id = "";
         for (let i = 0; i < length; i++) {
           id += ID_CHARS.charAt(Math.floor(Math.random() * ID_CHARS.length));
         }
         return id;
       }
-      exports.createRandomId = createRandomId3;
+      exports.createRandomId = createRandomId4;
       var ModelIndexImpl = class {
         constructor() {
           this.id2element = /* @__PURE__ */ new Map();
@@ -5633,7 +5633,7 @@
         add(element) {
           if (!element.id) {
             do {
-              element.id = createRandomId3();
+              element.id = createRandomId4();
             } while (this.contains(element));
           } else if (this.contains(element)) {
             throw new Error("Duplicate ID in model: " + element.id);
@@ -6298,13 +6298,13 @@
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.ResetCommand = exports.SystemCommand = exports.PopupCommand = exports.HiddenCommand = exports.MergeableCommand = exports.Command = void 0;
       var inversify_1 = require_inversify();
-      var Command2 = class Command {
+      var Command3 = class Command {
       };
-      exports.Command = Command2;
-      exports.Command = Command2 = __decorate([
+      exports.Command = Command3;
+      exports.Command = Command3 = __decorate([
         (0, inversify_1.injectable)()
-      ], Command2);
-      var MergeableCommand = class MergeableCommand extends Command2 {
+      ], Command3);
+      var MergeableCommand = class MergeableCommand extends Command3 {
         /**
          * Tries to merge the given command with this.
          *
@@ -6319,7 +6319,7 @@
       exports.MergeableCommand = MergeableCommand = __decorate([
         (0, inversify_1.injectable)()
       ], MergeableCommand);
-      var HiddenCommand = class HiddenCommand extends Command2 {
+      var HiddenCommand = class HiddenCommand extends Command3 {
         undo(context) {
           context.logger.error(this, "Cannot undo a hidden command");
           return context.root;
@@ -6333,19 +6333,19 @@
       exports.HiddenCommand = HiddenCommand = __decorate([
         (0, inversify_1.injectable)()
       ], HiddenCommand);
-      var PopupCommand = class PopupCommand extends Command2 {
+      var PopupCommand = class PopupCommand extends Command3 {
       };
       exports.PopupCommand = PopupCommand;
       exports.PopupCommand = PopupCommand = __decorate([
         (0, inversify_1.injectable)()
       ], PopupCommand);
-      var SystemCommand = class SystemCommand extends Command2 {
+      var SystemCommand = class SystemCommand extends Command3 {
       };
       exports.SystemCommand = SystemCommand;
       exports.SystemCommand = SystemCommand = __decorate([
         (0, inversify_1.injectable)()
       ], SystemCommand);
-      var ResetCommand = class ResetCommand extends Command2 {
+      var ResetCommand = class ResetCommand extends Command3 {
       };
       exports.ResetCommand = ResetCommand;
       exports.ResetCommand = ResetCommand = __decorate([
@@ -14619,24 +14619,24 @@
       var model_utils_1 = require_model_utils();
       var types_1 = require_types();
       var svg_exporter_1 = require_svg_exporter();
-      var ModelSource = class ModelSource {
+      var ModelSource2 = class ModelSource {
         initialize(registry) {
           registry.register(actions_1.RequestModelAction.KIND, this);
           registry.register(svg_exporter_1.ExportSvgAction.KIND, this);
         }
       };
-      exports.ModelSource = ModelSource;
+      exports.ModelSource = ModelSource2;
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IActionDispatcher),
         __metadata("design:type", Object)
-      ], ModelSource.prototype, "actionDispatcher", void 0);
+      ], ModelSource2.prototype, "actionDispatcher", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ViewerOptions),
         __metadata("design:type", Object)
-      ], ModelSource.prototype, "viewerOptions", void 0);
-      exports.ModelSource = ModelSource = __decorate([
+      ], ModelSource2.prototype, "viewerOptions", void 0);
+      exports.ModelSource = ModelSource2 = __decorate([
         (0, inversify_1.injectable)()
-      ], ModelSource);
+      ], ModelSource2);
       var ComputedBoundsApplicator = class ComputedBoundsApplicator {
         apply(root, action) {
           const index = new model_utils_1.SModelIndex();
@@ -14702,16 +14702,16 @@
       var command_1 = require_command();
       var types_1 = require_types();
       var model_source_1 = require_model_source();
-      var CommitModelAction2;
-      (function(CommitModelAction3) {
-        CommitModelAction3.KIND = "commitModel";
+      var CommitModelAction4;
+      (function(CommitModelAction5) {
+        CommitModelAction5.KIND = "commitModel";
         function create() {
           return {
-            kind: CommitModelAction3.KIND
+            kind: CommitModelAction5.KIND
           };
         }
-        CommitModelAction3.create = create;
-      })(CommitModelAction2 || (exports.CommitModelAction = CommitModelAction2 = {}));
+        CommitModelAction5.create = create;
+      })(CommitModelAction4 || (exports.CommitModelAction = CommitModelAction4 = {}));
       var CommitModelCommand = class CommitModelCommand extends command_1.SystemCommand {
         constructor(action) {
           super();
@@ -14743,7 +14743,7 @@
         }
       };
       exports.CommitModelCommand = CommitModelCommand;
-      CommitModelCommand.KIND = CommitModelAction2.KIND;
+      CommitModelCommand.KIND = CommitModelAction4.KIND;
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ModelSource),
         __metadata("design:type", model_source_1.ModelSource)
@@ -21661,7 +21661,7 @@
       var svg_exporter_1 = require_svg_exporter();
       var model_matching_1 = require_model_matching();
       var model_source_1 = require_model_source();
-      var LocalModelSource3 = class LocalModelSource extends model_source_1.ModelSource {
+      var LocalModelSource4 = class LocalModelSource extends model_source_1.ModelSource {
         constructor() {
           super(...arguments);
           this.currentRoot = smodel_factory_1.EMPTY_ROOT;
@@ -21866,28 +21866,28 @@
           (0, file_saver_1.saveAs)(blob, "diagram.svg");
         }
       };
-      exports.LocalModelSource = LocalModelSource3;
+      exports.LocalModelSource = LocalModelSource4;
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ILogger),
         __metadata("design:type", Object)
-      ], LocalModelSource3.prototype, "logger", void 0);
+      ], LocalModelSource4.prototype, "logger", void 0);
       __decorate([
         (0, inversify_1.inject)(model_source_1.ComputedBoundsApplicator),
         __metadata("design:type", model_source_1.ComputedBoundsApplicator)
-      ], LocalModelSource3.prototype, "computedBoundsApplicator", void 0);
+      ], LocalModelSource4.prototype, "computedBoundsApplicator", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IPopupModelProvider),
         (0, inversify_1.optional)(),
         __metadata("design:type", Object)
-      ], LocalModelSource3.prototype, "popupModelProvider", void 0);
+      ], LocalModelSource4.prototype, "popupModelProvider", void 0);
       __decorate([
         (0, inversify_1.inject)(types_1.TYPES.IModelLayoutEngine),
         (0, inversify_1.optional)(),
         __metadata("design:type", Object)
-      ], LocalModelSource3.prototype, "layoutEngine", void 0);
-      exports.LocalModelSource = LocalModelSource3 = __decorate([
+      ], LocalModelSource4.prototype, "layoutEngine", void 0);
+      exports.LocalModelSource = LocalModelSource4 = __decorate([
         (0, inversify_1.injectable)()
-      ], LocalModelSource3);
+      ], LocalModelSource4);
     }
   });
 
@@ -22669,18 +22669,18 @@
         }
         RejectAction2.create = create;
       })(RejectAction || (exports.RejectAction = RejectAction = {}));
-      var RequestModelAction;
-      (function(RequestModelAction2) {
-        RequestModelAction2.KIND = "requestModel";
+      var RequestModelAction2;
+      (function(RequestModelAction3) {
+        RequestModelAction3.KIND = "requestModel";
         function create(options) {
           return {
-            kind: RequestModelAction2.KIND,
+            kind: RequestModelAction3.KIND,
             options,
             requestId: generateRequestId()
           };
         }
-        RequestModelAction2.create = create;
-      })(RequestModelAction || (exports.RequestModelAction = RequestModelAction = {}));
+        RequestModelAction3.create = create;
+      })(RequestModelAction2 || (exports.RequestModelAction = RequestModelAction2 = {}));
       var SetModelAction;
       (function(SetModelAction2) {
         SetModelAction2.KIND = "setModel";
@@ -24009,18 +24009,18 @@
       exports.SourceModelChangedAction = exports.UpdateModelAction = exports.SetModelAction = exports.RequestModelAction = void 0;
       var type_util_1 = require_type_util();
       var base_protocol_1 = require_base_protocol();
-      var RequestModelAction;
-      (function(RequestModelAction2) {
-        RequestModelAction2.KIND = "requestModel";
+      var RequestModelAction2;
+      (function(RequestModelAction3) {
+        RequestModelAction3.KIND = "requestModel";
         function is(object) {
-          return base_protocol_1.RequestAction.hasKind(object, RequestModelAction2.KIND);
+          return base_protocol_1.RequestAction.hasKind(object, RequestModelAction3.KIND);
         }
-        RequestModelAction2.is = is;
+        RequestModelAction3.is = is;
         function create(options = {}) {
-          return Object.assign({ kind: RequestModelAction2.KIND, requestId: "" }, options);
+          return Object.assign({ kind: RequestModelAction3.KIND, requestId: "" }, options);
         }
-        RequestModelAction2.create = create;
-      })(RequestModelAction || (exports.RequestModelAction = RequestModelAction = {}));
+        RequestModelAction3.create = create;
+      })(RequestModelAction2 || (exports.RequestModelAction = RequestModelAction2 = {}));
       var SetModelAction;
       (function(SetModelAction2) {
         SetModelAction2.KIND = "setModel";
@@ -51245,6 +51245,11 @@ ${JSON.stringify(message, null, 4)}`);
   var import_sprotty2 = __toESM(require_lib2());
   var Node4diac = class extends import_sprotty2.RectangularNode {
   };
+  Node4diac.DEFAULT_FEATURES = [
+    import_sprotty2.selectFeature,
+    import_sprotty2.moveFeature,
+    import_sprotty2.boundsFeature
+  ];
 
   // model-source.ts
   var import_sprotty4 = __toESM(require_lib2());
@@ -51254,32 +51259,6 @@ ${JSON.stringify(message, null, 4)}`);
   var import_client = __toESM(require_lib6());
   var import_sprotty3 = __toESM(require_lib2());
   var import_inversify2 = __toESM(require_inversify());
-  var DroppableMouseListener = class extends import_client.MouseListener {
-    //   @inject(NodeCreator) nodeCreator: (point: Point, type: string) => void;
-    dragOver(target, event) {
-      event.preventDefault();
-      return [];
-    }
-    drop(target, e) {
-      let actions = [];
-      let type = e.dataTransfer.getData("text/plain");
-      if (type == "INP") {
-        if (!(target instanceof Node4diac)) {
-          target = (0, import_sprotty3.findParent)(target, (item) => item.type == "node4diac");
-        }
-        if (target instanceof Node4diac) {
-          actions = [CreatingInpAction.create(target.id)];
-        }
-      } else if (type == "FB") {
-        let point = { x: e.offsetX, y: e.offsetY };
-        actions = [CreatingFbAction.create(point)];
-      }
-      return actions;
-    }
-  };
-  DroppableMouseListener = __decorateClass([
-    (0, import_inversify2.injectable)()
-  ], DroppableMouseListener);
   var CreatingInpAction;
   ((CreatingInpAction2) => {
     CreatingInpAction2.KIND = "CreatingInp";
@@ -51302,6 +51281,35 @@ ${JSON.stringify(message, null, 4)}`);
     }
     CreatingFbAction2.create = create;
   })(CreatingFbAction || (CreatingFbAction = {}));
+  var DroppableMouseListener = class extends import_client.MouseListener {
+    //   @inject(NodeCreator) nodeCreator: (point: Point, type: string) => void;
+    dragOver(target, event) {
+      event.preventDefault();
+      return [];
+    }
+    drop(target, e) {
+      let actions = [];
+      let type = e.dataTransfer.getData("text/plain");
+      if (type == "INP") {
+        if (!(target instanceof Node4diac)) {
+          target = (0, import_sprotty3.findParent)(target, (item) => item.type == "node4diac");
+        }
+        if (target instanceof Node4diac) {
+          actions = [
+            CreatingInpAction.create(target.id)
+            // CreatingNodeAction.create(),
+          ];
+        }
+      } else if (type == "FB") {
+        let point = { x: e.offsetX, y: e.offsetY };
+        actions = [CreatingFbAction.create(point)];
+      }
+      return actions;
+    }
+  };
+  DroppableMouseListener = __decorateClass([
+    (0, import_inversify2.injectable)()
+  ], DroppableMouseListener);
 
   // model-source.ts
   var ClassDiagramModelSource = class extends import_sprotty4.LocalModelSource {
@@ -51327,6 +51335,7 @@ ${JSON.stringify(message, null, 4)}`);
       }
     }
     async creatingFb(action) {
+      await this.actionDispatcher.dispatch(import_sprotty4.CommitModelAction.create());
       let point = action.point;
       const viewport = await this.getViewport();
       const adjust = (offset) => {
@@ -51336,7 +51345,6 @@ ${JSON.stringify(message, null, 4)}`);
         x: viewport.scroll.x + adjust(point.x),
         y: viewport.scroll.y + adjust(point.y)
       };
-      console.log(action.point);
       let id = (0, import_sprotty4.createRandomId)();
       let newNode = {
         id,
@@ -51368,7 +51376,8 @@ ${JSON.stringify(message, null, 4)}`);
       };
       this.addElements([{ element: newNode, parentId: this.model.id }]);
     }
-    creatingInp(action) {
+    async creatingInp(action) {
+      await this.actionDispatcher.dispatch(import_sprotty4.CommitModelAction.create());
       let id = (0, import_sprotty4.createRandomId)();
       let parent = this.model.children.find((item) => item.id == action.parentId);
       if (parent) {
@@ -51406,9 +51415,9 @@ ${JSON.stringify(message, null, 4)}`);
         },
         size: { width: 100, height: 100 },
         // layout: "vbox",
-        layoutOptions: {
-          resizeContainer: true
-        },
+        // layoutOptions: {
+        //   resizeContainer: true,
+        // },
         children: [
           {
             id: "node1_title",
@@ -51938,14 +51947,14 @@ ${JSON.stringify(message, null, 4)}`);
   var import_client6 = __toESM(require_lib6());
   var createContainer = (containerId) => {
     const myModule = new import_inversify9.ContainerModule((bind, unbind, isBound, rebind) => {
+      const context = { bind, unbind, isBound, rebind };
       bind(import_client6.TYPES.ModelSource).to(ClassDiagramModelSource).inSingletonScope();
       rebind(import_client6.TYPES.ILogger).to(import_sprotty9.ConsoleLogger).inSingletonScope();
       rebind(import_client6.TYPES.LogLevel).toConstantValue(import_sprotty9.LogLevel.log);
-      const context = { bind, unbind, isBound, rebind };
       (0, import_sprotty9.configureModelElement)(context, "graph", import_sprotty9.SGraphImpl, import_sprotty9.SGraphView);
       (0, import_sprotty9.configureModelElement)(context, "node4diac", Node4diac, Node4diacView, {
         // enable: [withEditLabelFeature, layoutableChildFeature], // плюсуются к SNodeImpl.DEFAULT_FEATURES
-        disable: [import_sprotty9.hoverFeedbackFeature, import_sprotty9.popupFeature, import_sprotty9.connectableFeature]
+        // disable: [hoverFeedbackFeature, popupFeature, connectableFeature],
       });
       (0, import_sprotty9.configureModelElement)(context, "node4diac:title", import_sprotty9.SLabelImpl, import_sprotty9.SLabelView, {
         enable: [import_sprotty9.editLabelFeature]
@@ -51968,21 +51977,11 @@ ${JSON.stringify(message, null, 4)}`);
       );
       (0, import_sprotty9.configureModelElement)(
         context,
-        "edge:straight",
-        import_sprotty9.SEdgeImpl,
-        import_sprotty9.PolylineEdgeView
-      );
-      (0, import_sprotty9.configureModelElement)(
-        context,
         "node4diac:port_title",
         import_sprotty9.SLabelImpl,
         import_sprotty9.SLabelView
       );
       (0, import_sprotty9.configureModelElement)(context, import_client6.DefaultTypes.EDGE, import_client6.GEdge, WorkflowEdgeView);
-      (0, import_sprotty9.configureViewerOptions)(context, {
-        needsClientLayout: true,
-        baseDiv: containerId
-      });
       (0, import_sprotty9.configureModelElement)(
         context,
         "routing-point",
@@ -51995,6 +51994,10 @@ ${JSON.stringify(message, null, 4)}`);
         import_sprotty9.SRoutingHandleImpl,
         import_sprotty9.SRoutingHandleView
       );
+      (0, import_sprotty9.configureViewerOptions)(context, {
+        needsClientLayout: true,
+        baseDiv: containerId
+      });
     });
     const container = new import_inversify9.Container();
     (0, import_sprotty9.loadDefaultModules)(container, { exclude: [import_sprotty9.expandModule, import_sprotty9.fadeModule] });
@@ -52009,7 +52012,7 @@ ${JSON.stringify(message, null, 4)}`);
 
   // index.ts
   function run() {
-    var _a, _b;
+    var _a;
     const container = createContainer("sprotty-container");
     const modelSource = container.get(import_sprotty10.TYPES.ModelSource);
     modelSource.updateModel();
@@ -52018,10 +52021,6 @@ ${JSON.stringify(message, null, 4)}`);
       let str = JSON.stringify(modelSource.model, null, " ");
       console.log(str);
       alert(str);
-    });
-    let btnUpdate = (_b = document.getElementsByClassName("btnUpdate")) == null ? void 0 : _b.item(0);
-    btnUpdate.addEventListener("click", async (e) => {
-      modelSource.updateModel();
     });
   }
   document.addEventListener("DOMContentLoaded", () => run());

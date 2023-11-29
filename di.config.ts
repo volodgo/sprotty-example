@@ -39,17 +39,17 @@ import { DefaultTypes, GEdge, TYPES } from "@eclipse-glsp/client";
 
 export const createContainer = (containerId: string) => {
   const myModule = new ContainerModule((bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+
     bind(TYPES.ModelSource).to(ClassDiagramModelSource).inSingletonScope();
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.log);
-
-    const context = { bind, unbind, isBound, rebind };
 
     configureModelElement(context, "graph", SGraphImpl, SGraphView);
 
     configureModelElement(context, "node4diac", Node4diac, Node4diacView, {
       // enable: [withEditLabelFeature, layoutableChildFeature], // плюсуются к SNodeImpl.DEFAULT_FEATURES
-      disable: [hoverFeedbackFeature, popupFeature, connectableFeature],
+      // disable: [hoverFeedbackFeature, popupFeature, connectableFeature],
     });
 
     // Тайтл редактируемый
@@ -85,11 +85,6 @@ export const createContainer = (containerId: string) => {
     // связь
     configureModelElement(context, DefaultTypes.EDGE, GEdge, WorkflowEdgeView);
 
-    configureViewerOptions(context, {
-      needsClientLayout: true,
-      baseDiv: containerId,
-    });
-
     configureModelElement(
       context,
       "routing-point",
@@ -102,6 +97,12 @@ export const createContainer = (containerId: string) => {
       SRoutingHandleImpl,
       SRoutingHandleView
     );
+
+    configureViewerOptions(context, {
+      needsClientLayout: true,
+      baseDiv: containerId,
+    });
+
     // configureModelElement(
     //   context,
     //   "bezier-create-routing-point",

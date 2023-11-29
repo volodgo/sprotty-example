@@ -14,10 +14,10 @@ export default function run() {
     alert(str);
   });
 
-  let btnUpdate = document.getElementsByClassName("btnUpdate")?.item(0);
+  /* let btnUpdate = document.getElementsByClassName("btnUpdate")?.item(0);
   btnUpdate.addEventListener("click", async (e: PointerEvent) => {
     modelSource.updateModel();
-  });
+  }); */
 }
 
 document.addEventListener("DOMContentLoaded", () => run());
